@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simón — Arcade Nova</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="game">
+    <header class="top">
+      <a class="back" href="../../index.html"><i class="fa-solid fa-arrow-left"></i> Arcade Nova</a>
+      <h1>🔵 Simón</h1>
+      <button id="sound-toggle" class="icon-btn" title="Activar/desactivar sonido"><i class="fa-solid fa-volume-high"></i></button>
+    </header>
+
+    <div class="simon" id="simon">
+      <button class="pad pad-green" data-i="0" aria-label="Verde"></button>
+      <button class="pad pad-red" data-i="1" aria-label="Rojo"></button>
+      <button class="pad pad-yellow" data-i="2" aria-label="Amarillo"></button>
+      <button class="pad pad-blue" data-i="3" aria-label="Azul"></button>
+      <div class="center">
+        <span class="round-label">RONDA</span>
+        <strong id="round">0</strong>
+        <span class="best-label">Récord: <b id="best">0</b></span>
+      </div>
+    </div>
+
+    <p class="status" id="status">Pulsa «Empezar» y mira la secuencia</p>
+    <button id="start" class="btn"><i class="fa-solid fa-play"></i> Empezar</button>
+
+    <p class="meta">Autor: <a href="https://github.com/alberto2005-coder" target="_blank" rel="noopener noreferrer">Alberto Ortiz</a></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

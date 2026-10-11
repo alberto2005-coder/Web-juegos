@@ -1,0 +1,11 @@
+{
+  "id": "14",
+  "nombre": "Simón",
+  "descripcion": "Memoriza y repite la secuencia de luces y sonidos. ¡Cada ronda suma una más!",
+  "url": "./Juegos/simon/index.html",
+  "categoria": "Memoria",
+  "tags": ["oneplayer", "memoria", "reflejos", "clasico"],
+  "miniatura": "./Juegos/simon/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}

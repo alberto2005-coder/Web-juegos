@@ -1,0 +1,277 @@
+/* =========================================================
+   Simón — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
+:root {
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --blue: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem 1rem 2.5rem;
+}
+
+.game {
+  width: min(480px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== CABECERA ====== */
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.back {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
+}
+
+.top h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.icon-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 12px;
+  width: 42px;
+  height: 42px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+}
+
+.icon-btn.muted {
+  color: var(--danger, #e04f5f);
+}
+
+/* ====== TABLERO SIMÓN ====== */
+.simon {
+  position: relative;
+  width: min(340px, 82vw);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 14px;
+  border-radius: 50%;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+
+.pad {
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  filter: saturate(0.7);
+  transition: opacity 0.15s ease, filter 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.pad:disabled {
+  cursor: default;
+}
+
+.pad-green {
+  background: var(--green);
+  border-radius: 100% 18px 18px 18px;
+}
+
+.pad-red {
+  background: var(--red);
+  border-radius: 18px 100% 18px 18px;
+}
+
+.pad-yellow {
+  background: var(--yellow);
+  border-radius: 18px 18px 18px 100%;
+}
+
+.pad-blue {
+  background: var(--blue);
+  border-radius: 18px 18px 100% 18px;
+}
+
+.pad:not(:disabled):hover {
+  opacity: 0.8;
+}
+
+.pad.lit {
+  opacity: 1;
+  filter: saturate(1.4) brightness(1.55);
+  transform: scale(0.97);
+}
+
+.pad-green.lit { box-shadow: 0 0 45px 6px rgba(34, 197, 94, 0.75); }
+.pad-red.lit { box-shadow: 0 0 45px 6px rgba(239, 68, 68, 0.75); }
+.pad-yellow.lit { box-shadow: 0 0 45px 6px rgba(234, 179, 8, 0.75); }
+.pad-blue.lit { box-shadow: 0 0 45px 6px rgba(59, 130, 246, 0.75); }
+
+.center {
+  position: absolute;
+  inset: 31%;
+  border-radius: 50%;
+  background: #0b1020;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  z-index: 2;
+  box-shadow: inset 0 6px 18px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.round-label,
+.best-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.center strong {
+  font-size: 2.3rem;
+  font-weight: 800;
+  line-height: 1;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.best-label b {
+  color: var(--accent-2);
+}
+
+/* ====== CONTROLES ====== */
+.status {
+  margin-top: 1.3rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  min-height: 1.4em;
+  text-align: center;
+}
+
+.status.error {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.status.ok {
+  color: #4ade80;
+  font-weight: 700;
+}
+
+.btn {
+  margin-top: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--grad);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.8rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(124, 58, 237, 0.45);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.meta {
+  margin-top: 1.1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -24,8 +24,14 @@
       <div class="hud-box"><i class="fa-solid fa-clock"></i> <strong id="timer">0</strong></div>
     </div>
 
+    <div class="levels" role="group" aria-label="Elegir dificultad">
+      <button class="level active" data-level="facil">Fácil <span>9×9 · 10 minas</span></button>
+      <button class="level" data-level="medio">Medio <span>16×16 · 40 minas</span></button>
+      <button class="level" data-level="experto">Experto <span>30×16 · 99 minas</span></button>
+    </div>
+
     <div class="board-wrap">
-      <div class="board" id="board" aria-label="Tablero de buscaminas"></div>
+      <div class="board level-facil" id="board" aria-label="Tablero de buscaminas"></div>
     </div>
 
     <p class="hint">Clic izquierdo: descubrir · Clic derecho: bandera 🚩 · En móvil: mantén pulsado</p>
