@@ -1,16 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta 4</title>
-        <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conecta 4 — Nekerit Games</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <h1> Conecta 4</h1>
-    <H2> En desarrollo</H2>
+  <div class="game-container">
+    <header class="header">
+      <a href="../../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver al Menú</a>
+      <h1>🔴 Conecta 4 🟡</h1>
+      <div class="controls-top">
+        <div class="mode-select">
+          <label for="gameMode">Modo:</label>
+          <select id="gameMode">
+            <option value="pve">Contra la IA (1J)</option>
+            <option value="pvp">2 Jugadores (Local)</option>
+          </select>
+        </div>
+        <button id="resetBtn" class="btn btn-reset"><i class="fas fa-redo"></i> Reiniciar</button>
+      </div>
+    </header>
 
-    <script src="script.js"></script>
+    <div class="status-panel">
+      <div class="player-score player-1 active" id="scoreCard1">
+        <span class="disc-icon red"></span>
+        <div class="player-info">
+          <span class="name">Rojo (J1)</span>
+          <span class="score" id="score1">0</span>
+        </div>
+      </div>
+      <div class="turn-indicator" id="turnIndicator">
+        Turno de: <span id="currentTurnName" class="turn-highlight">Rojo</span>
+      </div>
+      <div class="player-score player-2" id="scoreCard2">
+        <span class="disc-icon yellow"></span>
+        <div class="player-info">
+          <span class="name" id="p2Name">IA (Amarillo)</span>
+          <span class="score" id="score2">0</span>
+        </div>
+      </div>
+    </div>
+
+    <main class="board-wrapper">
+      <div class="preview-row" id="previewRow"></div>
+      <div class="board" id="board"></div>
+    </main>
+
+    <!-- Modal Victoria -->
+    <div class="modal hidden" id="winModal">
+      <div class="modal-content">
+        <h2 id="winnerText">¡Ganó el Jugador Rojo! 🎉</h2>
+        <p id="winnerSub">¡Cuatro en línea conseguido!</p>
+        <button id="modalPlayAgain" class="btn btn-primary">Jugar otra vez</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

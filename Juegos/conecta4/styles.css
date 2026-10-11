@@ -1,0 +1,349 @@
+:root {
+  --bg-color: #0f172a;
+  --panel-bg: #1e293b;
+  --board-blue: #1e40af;
+  --board-shadow: #172554;
+  --slot-empty: #090d16;
+  --red-chip: #ef4444;
+  --red-glow: rgba(239, 68, 68, 0.6);
+  --yellow-chip: #eab308;
+  --yellow-glow: rgba(234, 179, 8, 0.6);
+  --text-main: #f8fafc;
+  --accent: #38bdf8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1e1b4b, #0f172a);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.game-container {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+}
+
+.btn-back {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  background: var(--panel-bg);
+  border-radius: 8px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-back:hover {
+  color: #fff;
+  background: #334155;
+}
+
+.controls-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.mode-select select {
+  background: var(--panel-bg);
+  color: #fff;
+  border: 1px solid #334155;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-reset {
+  background: #334155;
+  color: #fff;
+}
+
+.btn-reset:hover {
+  background: #475569;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.status-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--panel-bg);
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.player-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.player-score.active {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+
+.disc-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.disc-icon.red {
+  background: var(--red-chip);
+  box-shadow: 0 0 8px var(--red-glow);
+}
+
+.disc-icon.yellow {
+  background: var(--yellow-chip);
+  box-shadow: 0 0 8px var(--yellow-glow);
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-info .name {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.player-info .score {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.turn-indicator {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.turn-highlight {
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* Tablero */
+.board-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.preview-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  max-width: 560px;
+  height: 50px;
+  gap: 8px;
+  padding: 0 12px;
+}
+
+.preview-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-disc {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.preview-disc.visible {
+  opacity: 0.8;
+  transform: translateY(5px);
+}
+
+.preview-disc.red {
+  background: var(--red-chip);
+  box-shadow: 0 0 12px var(--red-glow);
+}
+
+.preview-disc.yellow {
+  background: var(--yellow-chip);
+  box-shadow: 0 0 12px var(--yellow-glow);
+}
+
+.board {
+  background: var(--board-blue);
+  padding: 14px;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px var(--board-shadow), inset 0 3px 6px rgba(255, 255, 255, 0.2);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  max-width: 560px;
+  width: 100%;
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--slot-empty);
+  border-radius: 50%;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.disc {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  position: absolute;
+  animation: drop 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.disc.red {
+  background: radial-gradient(circle at 35% 35%, #fca5a5, var(--red-chip));
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 0 12px var(--red-glow);
+}
+
+.disc.yellow {
+  background: radial-gradient(circle at 35% 35%, #fef08a, var(--yellow-chip));
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 0 12px var(--yellow-glow);
+}
+
+.disc.winning {
+  animation: pulse 0.7s infinite alternate;
+}
+
+@keyframes drop {
+  from {
+    transform: translateY(-400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.95);
+    filter: brightness(1.2);
+  }
+  to {
+    transform: scale(1.08);
+    filter: brightness(1.6);
+  }
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 30px 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 600px) {
+  .board {
+    gap: 6px;
+    padding: 8px;
+  }
+  .preview-row {
+    height: 35px;
+  }
+}

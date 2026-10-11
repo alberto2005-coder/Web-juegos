@@ -1,16 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damas</title>
-        <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Damas — Nekerit Games</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <h1> Damas</h1>
-    <H2> En desarrollo</H2>
+  <div class="game-container">
+    <header class="header">
+      <a href="../../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver al Menú</a>
+      <h1>👑 Damas Clásicas 👑</h1>
+      <div class="controls-top">
+        <div class="mode-select">
+          <label for="gameMode">Modo:</label>
+          <select id="gameMode">
+            <option value="pve">Contra la IA (1J)</option>
+            <option value="pvp">2 Jugadores (Local)</option>
+          </select>
+        </div>
+        <button id="resetBtn" class="btn btn-reset"><i class="fas fa-redo"></i> Reiniciar</button>
+      </div>
+    </header>
 
-    <script src="script.js"></script>
+    <div class="status-panel">
+      <div class="player-card player-red active" id="cardRed">
+        <div class="piece-avatar red"></div>
+        <div class="player-details">
+          <span class="player-title">Rojas (J1)</span>
+          <span class="captured">Capturadas: <b id="capturedByRed">0</b></span>
+        </div>
+      </div>
+
+      <div class="turn-box">
+        <span>Turno:</span>
+        <strong id="turnLabel" class="turn-red">Rojas</strong>
+      </div>
+
+      <div class="player-card player-black" id="cardBlack">
+        <div class="piece-avatar black"></div>
+        <div class="player-details">
+          <span class="player-title" id="p2Title">IA (Negras)</span>
+          <span class="captured">Capturadas: <b id="capturedByBlack">0</b></span>
+        </div>
+      </div>
+    </div>
+
+    <main class="board-wrapper">
+      <div class="checkers-board" id="board"></div>
+    </main>
+
+    <!-- Modal Victoria -->
+    <div class="modal hidden" id="winModal">
+      <div class="modal-content">
+        <h2 id="winnerText">¡Ganador! 🏆</h2>
+        <p id="winnerSub">¡Partida finalizada!</p>
+        <button id="modalPlayAgain" class="btn btn-primary">Jugar otra vez</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
