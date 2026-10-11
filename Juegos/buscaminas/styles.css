@@ -147,6 +147,52 @@ body {
   transform: scale(1.12);
 }
 
+/* ====== NIVELES ====== */
+.levels {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 6px;
+}
+
+.level {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 0.4rem;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.level span {
+  font-size: 0.64rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.level:hover {
+  color: var(--text);
+}
+
+.level.active {
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+}
+
 /* ====== TABLERO ====== */
 .board-wrap {
   width: 100%;
@@ -181,6 +227,27 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+
+/* Tableros grandes: celdas más compactas */
+.level-medio .cell {
+  border-radius: 7px;
+  font-size: clamp(0.6rem, 2.4vw, 0.95rem);
+}
+
+.level-experto .cell {
+  border-radius: 5px;
+  font-size: clamp(0.45rem, 1.6vw, 0.8rem);
+}
+
+.level-medio {
+  gap: 4px;
+  padding: 8px;
+}
+
+.level-experto {
+  gap: 3px;
+  padding: 7px;
 }
 
 .cell:hover:not(.open) {

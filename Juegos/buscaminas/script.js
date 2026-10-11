@@ -3,26 +3,43 @@
    Basado en NekeritDevs/Web-juegos (MIT)
    ========================================================= */
 
-const SIZE = 9;
-const MINES = 10;
+const NIVELES = {
+  facil:   { filas: 9,  cols: 9,  minas: 10 },
+  medio:   { filas: 16, cols: 16, minas: 40 },
+  experto: { filas: 16, cols: 30, minas: 99 },
+};
+const NIVEL_KEY = "arcadeNovaBuscaminas-nivel";
 
 const boardEl = document.getElementById("board");
 const minesLeftEl = document.getElementById("mines-left");
 const timerEl = document.getElementById("timer");
 const faceEl = document.getElementById("face");
 const restartBtn = document.getElementById("restart");
+const levelBtns = [...document.querySelectorAll(".level")];
 
-let grid, // grid[r][c] = { mine, open, flagged, n }
+let nivel, // clave del nivel activo
+  ROWS, COLS, MINAS,
+  grid, // grid[r][c] = { mine, open, flagged, n }
   firstClick, gameOver, won, flags, seconds, timerId;
 
 // ====== CONFIGURACIÓN ======
+function aplicarNivel(clave) {
+  nivel = clave;
+  ({ filas: ROWS, cols: COLS, minas: MINAS } = NIVELES[nivel]);
+  levelBtns.forEach((b) => b.classList.toggle("active", b.dataset.level === nivel));
+  boardEl.className = `board level-${nivel}`;
+  boardEl.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+  boardEl.style.aspectRatio = `${COLS} / ${ROWS}`;
+  try { localStorage.setItem(NIVEL_KEY, nivel); } catch (_) { /* modo privado */ }
+}
+
 function crearTablero() {
-  grid = Array.from({ length: SIZE }, () =>
-    Array.from({ length: SIZE }, () => ({ mine: false, open: false, flagged: false, n: 0 }))
+  grid = Array.from({ length: ROWS }, () =>
+    Array.from({ length: COLS }, () => ({ mine: false, open: false, flagged: false, n: 0 }))
   );
   boardEl.innerHTML = "";
-  for (let r = 0; r < SIZE; r++) {
-    for (let c = 0; c < SIZE; c++) {
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
       const cell = document.createElement("button");
       cell.type = "button";
       cell.className = "cell";
@@ -36,17 +53,17 @@ function crearTablero() {
 
 function colocarMinas(exceptoR, exceptoC) {
   let colocadas = 0;
-  while (colocadas < MINES) {
-    const r = Math.floor(Math.random() * SIZE);
-    const c = Math.floor(Math.random() * SIZE);
+  while (colocadas < MINAS) {
+    const r = Math.floor(Math.random() * ROWS);
+    const c = Math.floor(Math.random() * COLS);
     const cell = grid[r][c];
     // La primera casilla (y sus vecinas) siempre está segura
-    if (cell.mine || Math.abs(r - exceptoR) <= 1 && Math.abs(c - exceptoC) <= 1) continue;
+    if (cell.mine || (Math.abs(r - exceptoR) <= 1 && Math.abs(c - exceptoC) <= 1)) continue;
     cell.mine = true;
     colocadas++;
   }
-  for (let r = 0; r < SIZE; r++) {
-    for (let c = 0; c < SIZE; c++) {
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
       grid[r][c].n = vecinos(r, c).filter(([vr, vc]) => grid[vr][vc].mine).length;
     }
   }
@@ -58,7 +75,7 @@ function vecinos(r, c) {
     for (let dc = -1; dc <= 1; dc++) {
       if (!dr && !dc) continue;
       const nr = r + dr, nc = c + dc;
-      if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE) out.push([nr, nc]);
+      if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) out.push([nr, nc]);
     }
   }
   return out;
@@ -66,7 +83,7 @@ function vecinos(r, c) {
 
 // ====== RENDER ======
 function cellEl(r, c) {
-  return boardEl.children[r * SIZE + c];
+  return boardEl.children[r * COLS + c];
 }
 
 function pintar(r, c) {
@@ -90,7 +107,7 @@ function pintar(r, c) {
 }
 
 function actualizarHUD() {
-  minesLeftEl.textContent = MINES - flags;
+  minesLeftEl.textContent = MINAS - flags;
   timerEl.textContent = seconds;
   faceEl.textContent = gameOver ? (won ? "😎" : "💀") : "🙂";
 }
@@ -142,20 +159,20 @@ function marcar(r, c) {
 function comprobarVictoria() {
   let abiertas = 0;
   for (const row of grid) for (const cell of row) if (cell.open) abiertas++;
-  if (abiertas === SIZE * SIZE - MINES) {
+  if (abiertas === ROWS * COLS - MINAS) {
     won = true;
     gameOver = true;
     detenerTemporizador();
     // Marcar todas las minas restantes
-    for (let r = 0; r < SIZE; r++) {
-      for (let c = 0; c < SIZE; c++) {
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
         if (grid[r][c].mine && !grid[r][c].flagged) {
           grid[r][c].flagged = true;
           pintar(r, c);
         }
       }
     }
-    flags = MINES;
+    flags = MINAS;
     actualizarHUD();
   }
 }
@@ -164,8 +181,8 @@ function perder() {
   gameOver = true;
   detenerTemporizador();
   // Revelar todas las minas
-  for (let r = 0; r < SIZE; r++) {
-    for (let c = 0; c < SIZE; c++) {
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
       if (grid[r][c].mine) {
         grid[r][c].open = true;
         pintar(r, c);
@@ -243,4 +260,18 @@ boardEl.addEventListener("touchmove", () => {
 restartBtn.addEventListener("click", nuevaPartida);
 faceEl.addEventListener("click", nuevaPartida);
 
-nuevaPartida();
+levelBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    aplicarNivel(btn.dataset.level);
+    nuevaPartida();
+  });
+});
+
+// ====== INICIO ======
+(function init() {
+  let guardado = "facil";
+  try { guardado = localStorage.getItem(NIVEL_KEY) || "facil"; } catch (_) { /* modo privado */ }
+  if (!NIVELES[guardado]) guardado = "facil";
+  aplicarNivel(guardado);
+  nuevaPartida();
+})();
