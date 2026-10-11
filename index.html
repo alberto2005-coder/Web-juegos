@@ -4,48 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nekerit Games</title>
+  <meta name="description" content="Arcade Nova — Galería de juegos web para jugar directamente desde el navegador. Basado en NekeritDevs/Web-juegos (MIT).">
+  <meta name="author" content="Arcade Nova">
+  <title>Arcade Nova — Juega desde el navegador</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="logo.png">
-  <!-- CDN de Font Awesome para íconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body>
-  <header>
-    <!-- AGREGAR ESTE BOTÓN -->
-    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema"></button>
-    
-    <h1>🎮 Nekerit Games</h1>
-    <div class="filtros-container">
-      <input type="text" id="busqueda" placeholder="Buscar juegos por nombre...">
-      <select id="filtro-autor">
-        <option value="">Filtrar por autor</option>
-      </select>
-      <select id="filtro-tags">
-        <option value="">Filtrar por tag</option>
-      </select>
+<body data-theme="dark">
+
+  <header class="site-header">
+    <button class="theme-toggle" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro"></button>
+
+    <div class="brand">
+      <img src="logo.png" alt="Logo de Arcade Nova" class="brand-logo">
+      <div class="brand-text">
+        <h1>Arcade Nova</h1>
+        <p class="tagline">Juegos web listos para jugar, sin descargas ni instalaciones.</p>
+      </div>
+    </div>
+
+    <div class="filtros-container" role="search">
+      <div class="field field-search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="text" id="busqueda" placeholder="Buscar juegos por nombre..." aria-label="Buscar juegos por nombre">
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-user" aria-hidden="true"></i>
+        <select id="filtro-autor" aria-label="Filtrar por autor">
+          <option value="">Todos los autores</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <i class="fa-solid fa-tags" aria-hidden="true"></i>
+        <select id="filtro-tags" aria-label="Filtrar por tag">
+          <option value="">Todos los tags</option>
+        </select>
+      </div>
     </div>
   </header>
 
-  <div class="theme-indicator" id="themeIndicator">
+  <div class="theme-indicator" id="themeIndicator" aria-live="polite">
     <span id="themeText">Modo Oscuro</span>
   </div>
 
-  <main id="juegos-container">
+  <main id="juegos-container" class="juegos-grid" aria-live="polite">
     <!-- Juegos cargados dinámicamente -->
   </main>
 
-  <!-- Footer fijo -->
   <footer class="footer">
-    <p>© 2025 NekeritStudio</p>
-    <div class="social-links">
-      <a href="https://github.com/NekeritStudio" target="_blank" title="GitHub">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://discord.gg/k2jEVnKZ97" target="_blank" title="Discord">
-        <i class="fab fa-discord"></i>
-      </a>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="" aria-hidden="true" class="footer-logo">
+        <div>
+          <strong>Arcade Nova</strong>
+          <span class="footer-meta" id="footer-stats"></span>
+        </div>
+      </div>
+
+      <!-- Atribución obligatoria (Licencia MIT) -->
+      <p class="attribution">
+        Basado en
+        <a href="https://github.com/NekeritDevs/Web-juegos" target="_blank" rel="noopener noreferrer">NekeritDevs/Web-juegos</a>
+        © 2025 NekeritStudio —
+        <a href="https://github.com/NekeritDevs/Web-juegos/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licencia MIT</a>
+      </p>
+
+      <div class="social-links">
+        <a href="https://github.com/alberto2005-coder/Web-juegos" target="_blank" rel="noopener noreferrer" title="Repositorio del proyecto" aria-label="GitHub del proyecto">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://github.com/NekeritDevs/Web-juegos" target="_blank" rel="noopener noreferrer" title="Proyecto original: NekeritDevs/Web-juegos" aria-label="Proyecto original en GitHub">
+          <i class="fa-solid fa-code-branch"></i>
+        </a>
+        <a href="https://discord.gg/k2jEVnKZ97" target="_blank" rel="noopener noreferrer" title="Discord" aria-label="Discord">
+          <i class="fab fa-discord"></i>
+        </a>
+      </div>
     </div>
   </footer>
 
