@@ -168,16 +168,21 @@ header h1 {
 }
 
 .juego-card img {
-  width: 80%;
+  width: 150px;
   height: 150px;
+  max-width: 85%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
+  border-radius: 26px;
+  margin: 0 auto 1rem auto;
+  display: block;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .juego-card:hover img {
-  transform: scale(1.1);
+  transform: scale(1.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
 }
 
 /* ====== TÍTULOS CORREGIDOS ====== */
