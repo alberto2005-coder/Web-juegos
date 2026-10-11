@@ -28,7 +28,9 @@ function aplicarNivel(clave) {
   ({ filas: ROWS, cols: COLS, minas: MINAS } = NIVELES[nivel]);
   levelBtns.forEach((b) => b.classList.toggle("active", b.dataset.level === nivel));
   boardEl.className = `board level-${nivel}`;
-  boardEl.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+  // minmax(0, 1fr) evita que el contenido infle las columnas/filas (tableros grandes)
+  boardEl.style.gridTemplateColumns = `repeat(${COLS}, minmax(0, 1fr))`;
+  boardEl.style.gridAutoRows = "minmax(0, 1fr)";
   boardEl.style.aspectRatio = `${COLS} / ${ROWS}`;
   try { localStorage.setItem(NIVEL_KEY, nivel); } catch (_) { /* modo privado */ }
 }

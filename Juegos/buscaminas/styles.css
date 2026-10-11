@@ -289,14 +289,14 @@ body {
 }
 
 /* Colores de números estilo buscaminas clásico */
-.c1 { color: #4ea1ff; }
-.c2 { color: #4ade80; }
-.c3 { color: #ff6b6b; }
-.c4 { color: #b18cff; }
-.c5 { color: #ff9f45; }
-.c6 { color: #22d3ee; }
-.c7 { color: #f472b6; }
-.c8 { color: #e8ecff; }
+.cell.open.c1 { color: #4ea1ff; }
+.cell.open.c2 { color: #4ade80; }
+.cell.open.c3 { color: #ff6b6b; }
+.cell.open.c4 { color: #b18cff; }
+.cell.open.c5 { color: #ff9f45; }
+.cell.open.c6 { color: #22d3ee; }
+.cell.open.c7 { color: #f472b6; }
+.cell.open.c8 { color: #e8ecff; }
 
 /* ====== PIE ====== */
 .hint {
