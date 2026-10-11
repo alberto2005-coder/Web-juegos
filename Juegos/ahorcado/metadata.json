@@ -2,9 +2,9 @@
   "id": "6",
   "nombre": "Ahorcado",
   "descripcion": "Juego del ahorcado",
-  "url": "./juegos/ahorcado/index.html",
+  "url": "./Juegos/ahorcado/index.html",
   "categoria": "Lógica",
   "tags": ["Oneplayer", "Old", "En desarrollo"],
-  "miniatura": "./juegos/ahorcado/logo.png",
+  "miniatura": "./Juegos/ahorcado/logo.png",
   "autor": "Matheow Malpartida"
 }

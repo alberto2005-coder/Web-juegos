@@ -2,9 +2,9 @@
   "id": "7",
   "nombre": "Memory",
   "descripcion": "Juego de memoria",
-  "url": "./juegos/Memory/index.html",
+  "url": "./Juegos/Memory/index.html",
   "categoria": "Lógica",
   "tags": ["Oneplayer", "Old"],
-  "miniatura": "./juegos/Memory/logo.png",
+  "miniatura": "./Juegos/Memory/logo.png",
   "autor": "Hevieri"
 }

@@ -4,7 +4,7 @@
   "categoria": "Accion",
   "autor": "Dorado Rodriguez",
   "github": "https://github.com/doradorodriguez",
-  "miniatura": "./juegos/space-invaders/logo.png",
-  "url": "./juegos/space-invaders/index.html",
+  "miniatura": "./Juegos/space-invaders/logo.png",
+  "url": "./Juegos/space-invaders/index.html",
   "tags": ["Oneplayer", "Retro"]
 }

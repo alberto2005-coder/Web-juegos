@@ -2,9 +2,9 @@
   "id": "4",
   "nombre": "Tetris",
   "descripcion": "Juego del Tetris",
-  "url": "./juegos/Tetris/index.html",
+  "url": "./Juegos/Tetris/index.html",
   "categoria": "Puzzle",
   "tags": ["Oneplayer","En desarrollo", "Old"],
-  "miniatura": "./juegos/Tetris/logo.png",
+  "miniatura": "./Juegos/Tetris/logo.png",
   "autor": "Marcelo Ecuador"
 }

@@ -43,6 +43,15 @@ async function cargarJuegos() {
       const res = await fetch(ruta);
       if (!res.ok) throw new Error(`Error cargando ${ruta}`);
       const juego = await res.json();
+
+      // Normalizar rutas para servidores sensibles a mayúsculas (GitHub Pages)
+      if (juego.miniatura) {
+        juego.miniatura = juego.miniatura.replace(/^(\.\/)?juegos\//i, './Juegos/');
+      }
+      if (juego.url) {
+        juego.url = juego.url.replace(/^(\.\/)?juegos\//i, './Juegos/');
+      }
+
       todosLosJuegos.push(juego);
 
       // Agregar tags y autores a los sets

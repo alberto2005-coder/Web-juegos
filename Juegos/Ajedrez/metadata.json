@@ -2,10 +2,10 @@
   "id": "1",
   "nombre": "Ajedrez",
   "descripcion": "Juego de Ajedrez",
-  "url": "./juegos/Ajedrez/index.html",
+  "url": "./Juegos/Ajedrez/index.html",
   "categoria": "Lógica",
   "tags": ["Oneplayer", "Old", "Two players", "Contra IA"],
-  "miniatura": "./juegos/Ajedrez/logo.png",
+  "miniatura": "./Juegos/Ajedrez/logo.png",
   "autor": "Alberto Ortiz",
   "github": "https://github.com/alberto2005-coder"
 }

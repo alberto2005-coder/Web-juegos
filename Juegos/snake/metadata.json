@@ -4,7 +4,7 @@
   "categoria": "Arcade",
   "autor": "Dorado Rodriguez",
   "github": "https://github.com/doradorodriguez",
-  "miniatura": "./juegos/snake/logo.png",
-  "url": "./juegos/snake/index.html",
+  "miniatura": "./Juegos/snake/logo.png",
+  "url": "./Juegos/snake/index.html",
   "tags": ["Oneplayer", "Neon"]
 }
