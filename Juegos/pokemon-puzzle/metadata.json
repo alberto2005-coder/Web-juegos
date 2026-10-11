@@ -3,7 +3,7 @@
   "descripcion": "Juego de puzzle deslizante",
   "url": "./Juegos/pokemon-puzzle/index.html",
   "categoria": "Puzzle",
-  "tags": ["Oneplayer","En desarrollo", "Old"],
+  "tags": ["Oneplayer", "Puzzle", "Pokemon"],
   "miniatura": "./Juegos/pokemon-puzzle/logo.png",
   "autor": "Jairo Delgado"
 }

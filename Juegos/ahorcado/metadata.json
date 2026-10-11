@@ -1,10 +1,11 @@
 {
   "id": "6",
   "nombre": "Ahorcado",
-  "descripcion": "Juego del ahorcado",
+  "descripcion": "Juego del ahorcado clásico con categorías y pistas",
   "url": "./Juegos/ahorcado/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Old", "En desarrollo"],
+  "tags": ["Oneplayer", "Palabras", "Casual"],
   "miniatura": "./Juegos/ahorcado/logo.png",
-  "autor": "Matheow Malpartida"
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
 }

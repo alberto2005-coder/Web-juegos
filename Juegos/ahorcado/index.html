@@ -1,16 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahorcado</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Ahorcado — Nekerit Games</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-    <h1> Ahorcado</h1>
-    <H2> En desarrollo</H2>
+  <div class="game-container">
+    <header class="header">
+      <a href="../../index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver al Menú</a>
+      <h1>🔤 El Ahorcado 🔤</h1>
+      <div class="stats-top">
+        <span class="stat-pill"><i class="fas fa-fire"></i> Racha: <strong id="streakCount">0</strong></span>
+        <button id="restartBtn" class="btn btn-reset"><i class="fas fa-redo"></i> Nueva Palabra</button>
+      </div>
+    </header>
 
-    <script src="script.js"></script>
+    <div class="category-bar">
+      <span>Categoría: <strong id="currentCategory" class="badge">Animales</strong></span>
+      <span>Intentos restantes: <strong id="livesRemaining" class="badge-lives">6</strong></span>
+    </div>
+
+    <div class="main-display">
+      <div class="canvas-box">
+        <canvas id="hangmanCanvas" width="220" height="250"></canvas>
+      </div>
+
+      <div class="word-section">
+        <div class="word-display" id="wordDisplay"></div>
+        <div class="hint-box" id="hintBox">Pista disponible tras 2 fallos</div>
+      </div>
+    </div>
+
+    <div class="keyboard" id="keyboard"></div>
+
+    <!-- Modal Victoria / Derrota -->
+    <div class="modal hidden" id="gameModal">
+      <div class="modal-content">
+        <h2 id="modalTitle">¡Has ganado! 🎉</h2>
+        <p id="modalDesc">La palabra era: <b id="solutionWord">GATO</b></p>
+        <button id="modalNextBtn" class="btn btn-primary">Siguiente Palabra</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

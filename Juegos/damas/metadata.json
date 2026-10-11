@@ -1,10 +1,11 @@
 {
   "id": "9",
   "nombre": "Damas",
-  "descripcion": "Juego de las damas",
+  "descripcion": "Juego clásico de damas con modo 1J contra IA y 2J local",
   "url": "./Juegos/damas/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Old", "En desarrollo"],
+  "tags": ["Oneplayer", "Two players", "Contra IA"],
   "miniatura": "./Juegos/damas/logo.png",
-  "autor": ""
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
 }

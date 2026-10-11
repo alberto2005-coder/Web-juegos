@@ -4,7 +4,7 @@
   "descripcion": "Juego de Ping pong",
   "url": "./Juegos/ping-pong/index.html",
   "categoria": "Deportes",
-  "tags": ["Oneplayer", "Old","En desarrollo"],
+  "tags": ["Oneplayer", "Deportes", "Retro"],
   "miniatura": "./Juegos/ping-pong/logo.png",
   "autor": "Fernando Brandan"
 }
