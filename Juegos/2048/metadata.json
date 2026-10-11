@@ -1,0 +1,11 @@
+{
+  "id": "12",
+  "nombre": "2048",
+  "descripcion": "Combina las fichas con el mismo número hasta llegar a la 2048.",
+  "url": "./Juegos/2048/index.html",
+  "categoria": "Puzzle",
+  "tags": ["oneplayer", "logica", "numeros", "casual"],
+  "miniatura": "./Juegos/2048/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}

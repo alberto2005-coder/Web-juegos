@@ -1,0 +1,11 @@
+{
+  "id": "13",
+  "nombre": "Buscaminas",
+  "descripcion": "Encuentra todas las minas sin hacer estallar ninguna. Clic derecho para marcar.",
+  "url": "./Juegos/buscaminas/index.html",
+  "categoria": "Lógica",
+  "tags": ["oneplayer", "logica", "clasico", "casual"],
+  "miniatura": "./Juegos/buscaminas/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}

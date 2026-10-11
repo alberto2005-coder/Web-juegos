@@ -17,6 +17,11 @@ const rutas = [
   "Juegos/space-invaders/metadata.json",
   "Juegos/snake/metadata.json",
   "Juegos/gatitos-locos/metadata.json",
+  "Juegos/2048/metadata.json",
+  "Juegos/buscaminas/metadata.json",
+  "Juegos/simon/metadata.json",
+  "Juegos/breakout/metadata.json",
+  "Juegos/flappy-nova/metadata.json",
 ];
 
 const contenedor = document.getElementById("juegos-container");
@@ -129,22 +134,42 @@ function mostrarJuego(juego) {
     : "";
 
   const autorHTML = juego.autor
-    ? `<p class="autor"><strong>Autor:</strong> ${
-        juego.github
-          ? `<a href="${escapar(juego.github)}" target="_blank" rel="noopener noreferrer">${escapar(juego.autor)}</a>`
-          : escapar(juego.autor)
-      }</p>`
+    ? `<p class="autor">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+        <strong>Autor:</strong>${
+          juego.github
+            ? ` <a href="${escapar(juego.github)}" target="_blank" rel="noopener noreferrer">${escapar(juego.autor)}</a>`
+            : ` ${escapar(juego.autor)}`
+        }
+      </p>`
     : "";
 
+  const inicial = escapar((juego.nombre || "?").trim().charAt(0).toUpperCase());
+
   card.innerHTML = `
-      <img src="${escapar(juego.miniatura)}" alt="Miniatura de ${escapar(juego.nombre)}" loading="lazy">
-      <h2>${escapar(juego.nombre)}</h2>
-      <p class="descripcion">${escapar(juego.descripcion)}</p>
-      <p class="categoria"><strong>Categoría:</strong> ${escapar(juego.categoria)}</p>
-      ${autorHTML}
-      ${tagsHTML ? `<div class="tags-container">${tagsHTML}</div>` : ""}
-      <button type="button" data-url="${escapar(juego.url)}">Jugar</button>
+      <div class="card-media">
+        <img src="${escapar(juego.miniatura)}" alt="Miniatura de ${escapar(juego.nombre)}" loading="lazy">
+        <span class="card-placeholder" aria-hidden="true" hidden>${inicial}</span>
+        ${juego.categoria ? `<span class="card-badge">${escapar(juego.categoria)}</span>` : ""}
+      </div>
+      <div class="card-body">
+        <h2>${escapar(juego.nombre)}</h2>
+        <p class="descripcion">${escapar(juego.descripcion)}</p>
+        ${autorHTML}
+        ${tagsHTML ? `<div class="tags-container">${tagsHTML}</div>` : ""}
+        <button type="button" data-url="${escapar(juego.url)}">Jugar <i class="fa-solid fa-play" aria-hidden="true"></i></button>
+      </div>
     `;
+
+  // Si falta la miniatura (logo pendiente de añadir), mostramos una inicial decorativa
+  const img = card.querySelector("img");
+  const placeholder = card.querySelector(".card-placeholder");
+  const mostrarPlaceholder = () => {
+    if (img) img.remove();
+    if (placeholder) placeholder.hidden = false;
+  };
+  img.addEventListener("error", mostrarPlaceholder);
+  if (img.complete && img.naturalWidth === 0) mostrarPlaceholder();
 
   card.querySelector("button").addEventListener("click", () => {
     location.href = juego.url;
