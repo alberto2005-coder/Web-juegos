@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Gatitos Locos 🐱 — Juego de gatos</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <canvas id="game"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-item"><span class="hud-label">Puntos</span><span id="score">0</span></div>
+    <div class="hud-item"><span class="hud-label">Récord</span><span id="best">0</span></div>
+    <div class="hud-item"><span class="hud-label">Tiempo</span><span id="time">60</span></div>
+    <div class="hud-item"><span class="hud-label">Nivel</span><span id="level">1</span></div>
+    <div class="hud-item" id="livesBox"><span class="hud-label">Vidas</span><span id="lives">❤️❤️❤️</span></div>
+  </div>
+
+  <div id="combo" class="hidden">x2</div>
+
+  <!-- Menú -->
+  <div id="menu" class="panel">
+    <div class="cat-logo">🐱</div>
+    <h1>Gatitos Locos</h1>
+    <p class="subtitle">¡Acaricia a todos los gatos antes de que escapen!</p>
+    <ul class="rules">
+      <li>🖱️ <b>Clic / toque</b> a un gato = <b>+10 puntos</b> y un miau.</li>
+      <li>💛 <b>Gato dorado</b> raro = <b>+50 puntos</b> y tiempo extra.</li>
+      <li>🏃 Si un gato <b>escapa</b> pierdes una vida (3 vidas).</li>
+      <li>⚡ Encadena aciertos para el <b>combo x5</b>.</li>
+    </ul>
+    <button id="startBtn" class="btn">▶ Jugar</button>
+    <p class="hint">Controles: ratón o táctil · P = pausa</p>
+  </div>
+
+  <!-- Game over -->
+  <div id="over" class="panel hidden">
+    <div class="cat-logo">😿</div>
+    <h1>¡Se escaparon!</h1>
+    <p class="final">Puntuación: <span id="finalScore">0</span></p>
+    <p class="newbest hidden" id="newBest">🎉 ¡Nuevo récord!</p>
+    <p class="stats" id="stats">Acariciaste 0 gatos</p>
+    <button id="retryBtn" class="btn">🔄 Jugar otra vez</button>
+  </div>
+
+  <!-- Pausa -->
+  <div id="pause" class="panel hidden">
+    <div class="cat-logo">⏸️</div>
+    <h1>Pausa</h1>
+    <button id="resumeBtn" class="btn">▶ Continuar</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

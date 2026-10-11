@@ -1,0 +1,11 @@
+{
+  "id": "11",
+  "nombre": "Gatitos Locos",
+  "descripcion": "¡Acaricia a todos los gatos antes de que escapen!",
+  "url": "./Juegos/gatitos-locos/index.html",
+  "categoria": "Arcade",
+  "tags": ["Oneplayer", "Casual", "Gatos", "Reflejos"],
+  "miniatura": "./Juegos/gatitos-locos/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}
