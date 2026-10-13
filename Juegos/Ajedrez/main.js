@@ -938,7 +938,7 @@ class View {
     }
 }
     drawPiecePositions(moves = [], moveInner = "") {
-    document.body.style.setProperty("--color-background", `var(--color-${this.game.turn.toLowerCase()}`);
+    document.body.style.setProperty("--color-background", `var(--color-${this.game.turn.toLowerCase()})`);
     const other = this.game.turn === "WHITE" ? "turn-black" : "turn-white";
     const current = this.game.turn === "WHITE" ? "turn-white" : "turn-black";
     this.element.classList.add(current);
