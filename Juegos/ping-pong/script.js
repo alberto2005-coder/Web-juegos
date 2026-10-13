@@ -259,6 +259,7 @@ function resetGame() {
     scoreRight = 0;
     document.getElementById('scoreLeft').textContent = '0';
     document.getElementById('scoreRight').textContent = '0';
+    document.getElementById('startScreen').style.display = 'none';
     document.getElementById('gameOver').style.display = 'none';
     gameState = 'playing';
     resetBall();

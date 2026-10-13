@@ -202,8 +202,14 @@ function gameLoop() {
 
 
 document.addEventListener('keydown', (e) => {
-    if (e.code === 'ArrowLeft') player.moverIzquierda = true;
-    if (e.code === 'ArrowRight') player.moverDerecha = true;
+    if (e.code === 'ArrowLeft') {
+        e.preventDefault(); // evitar que la página se desplace
+        player.moverIzquierda = true;
+    }
+    if (e.code === 'ArrowRight') {
+        e.preventDefault();
+        player.moverDerecha = true;
+    }
     if (e.code === 'Space') {
         e.preventDefault();
         if (balas.length < 3) {

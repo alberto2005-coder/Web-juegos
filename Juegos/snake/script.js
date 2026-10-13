@@ -173,21 +173,25 @@ function reiniciarJuego() {
 
 document.addEventListener('keydown', (e) => {
     if (e.code === 'ArrowLeft' && ultimaDireccion.dx != 1) {
+        e.preventDefault(); // evitar que la página se desplace
         dx = -1;
         dy = 0;
         direccionCambiada = true;
     }
     if (e.code === 'ArrowRight' && ultimaDireccion.dx != -1) {
+        e.preventDefault();
         dx = 1;
         dy = 0; 
         direccionCambiada = true;
     }
     if (e.code === 'ArrowUp' && ultimaDireccion.dy != 1) {
+        e.preventDefault();
         dx = 0;
         dy = -1;
         direccionCambiada = true;
     }
     if (e.code === 'ArrowDown' && ultimaDireccion.dy != -1) {
+        e.preventDefault();
         dx = 0; 
         dy = 1;
         direccionCambiada = true;
