@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breakout — Arcade Nova</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="game">
+    <header class="top">
+      <a class="back" href="../../index.html"><i class="fa-solid fa-arrow-left"></i> Arcade Nova</a>
+      <h1>🧱 Breakout</h1>
+      <div class="scores">
+        <div class="score-box">Puntos<strong id="score">0</strong></div>
+        <div class="score-box">Vidas<strong id="lives">3</strong></div>
+      </div>
+    </header>
+
+    <div class="canvas-wrap">
+      <canvas id="game" width="480" height="640" aria-label="Juego Breakout"></canvas>
+
+      <div class="overlay" id="overlay" hidden>
+        <div class="overlay-card">
+          <h2 id="overlay-title">¡Juego terminado!</h2>
+          <p id="overlay-text"></p>
+          <button id="overlay-btn">Jugar otra vez</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="hint" id="hint">Mueve el ratón o el dedo para guiar la pala · Clic o espacio para lanzar</p>
+    <button id="restart" class="btn"><i class="fa-solid fa-rotate-right"></i> Nueva partida</button>
+
+    <p class="meta">Autor: <a href="https://github.com/alberto2005-coder" target="_blank" rel="noopener noreferrer">Alberto Ortiz</a></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

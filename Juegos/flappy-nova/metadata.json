@@ -1,0 +1,11 @@
+{
+  "id": "16",
+  "nombre": "Flappy Nova",
+  "descripcion": "Aletea entre las tuberías sin tocarlas. Cada intento cuenta: ¿cuánto aguantas?",
+  "url": "./Juegos/flappy-nova/index.html",
+  "categoria": "Arcade",
+  "tags": ["oneplayer", "reflejos", "casual", "arcade"],
+  "miniatura": "./Juegos/flappy-nova/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}

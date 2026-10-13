@@ -1,0 +1,11 @@
+{
+  "id": "15",
+  "nombre": "Breakout",
+  "descripcion": "Rompe todos los ladrillos con la pelota. Cada nivel va más rápido.",
+  "url": "./Juegos/breakout/index.html",
+  "categoria": "Arcade",
+  "tags": ["oneplayer", "arcade", "reflejos", "clasico"],
+  "miniatura": "./Juegos/breakout/logo.png",
+  "autor": "Alberto Ortiz",
+  "github": "https://github.com/alberto2005-coder"
+}
