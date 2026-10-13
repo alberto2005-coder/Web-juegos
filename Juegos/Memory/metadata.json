@@ -1,10 +1,10 @@
 {
   "id": "7",
   "nombre": "Memory",
-  "descripcion": "Juego de memoria",
+  "descripcion": "Encuentra todas las parejas girando las cartas: memoriza y gana en el menor número de movimientos.",
   "url": "./Juegos/Memory/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Old"],
+  "tags": ["oneplayer", "memoria", "old", "logica"],
   "miniatura": "./Juegos/Memory/logo.png",
   "autor": "Hevieri"
 }

@@ -1,6 +1,23 @@
+/* =========================================================
+   Conecta 4 — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
 :root {
+  /* ===== Sistema de diseño Arcade Nova ===== */
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+
+  /* ===== Variables del juego (tablero y fichas) ===== */
   --bg-color: #0f172a;
-  --panel-bg: #1e293b;
+  --panel-bg: rgba(255, 255, 255, 0.06);
   --board-blue: #1e40af;
   --board-shadow: #172554;
   --slot-empty: #090d16;
@@ -9,24 +26,27 @@
   --yellow-chip: #eab308;
   --yellow-glow: rgba(234, 179, 8, 0.6);
   --text-main: #f8fafc;
-  --accent: #38bdf8;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at top, #1e1b4b, #0f172a);
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  background-attachment: fixed;
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 1.2rem 1rem 2.5rem;
 }
 
 .game-container {
@@ -35,10 +55,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
-.header {
+/* ====== CABECERA ====== */
+.top {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -47,33 +68,47 @@ body {
   gap: 10px;
 }
 
-.header h1 {
-  font-size: 1.8rem;
-  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+.top h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  order: -1;
+  width: 100%;
+  text-align: center;
 }
 
-.btn-back {
-  color: #94a3b8;
+.back {
+  color: var(--muted);
   text-decoration: none;
-  font-size: 0.95rem;
-  padding: 6px 12px;
-  background: var(--panel-bg);
-  border-radius: 8px;
-  transition: all 0.2s;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
 
-.btn-back:hover {
-  color: #fff;
-  background: #334155;
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
 }
 
 .controls-top {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .mode-select {
@@ -81,22 +116,30 @@ body {
   align-items: center;
   gap: 6px;
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .mode-select select {
-  background: var(--panel-bg);
-  color: #fff;
-  border: 1px solid #334155;
+  background: #121731;
+  color: var(--text);
+  border: 1px solid var(--border);
   padding: 6px 10px;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-family: inherit;
   cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.mode-select select:hover,
+.mode-select select:focus {
+  border-color: var(--accent-2);
 }
 
 .btn {
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 8px 14px;
+  font-family: inherit;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
@@ -106,23 +149,27 @@ body {
 }
 
 .btn-reset {
-  background: #334155;
-  color: #fff;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 .btn-reset:hover {
-  background: #475569;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-2);
 }
 
 .btn-primary {
-  background: #2563eb;
+  background: var(--grad);
   color: white;
   padding: 10px 20px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.45);
 }
 
 .btn-primary:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .status-panel {
@@ -130,24 +177,29 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   background: var(--panel-bg);
-  padding: 12px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 12px 16px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .player-score {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 6px 14px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 10px;
   transition: all 0.3s;
 }
 
 .player-score.active {
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.55);
 }
 
 .disc-icon {
@@ -174,7 +226,7 @@ body {
 
 .player-info .name {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--muted);
 }
 
 .player-info .score {
@@ -185,11 +237,15 @@ body {
 .turn-indicator {
   font-size: 1rem;
   font-weight: 600;
-  color: #cbd5e1;
+  color: var(--muted);
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 10px;
 }
 
 .turn-highlight {
-  color: var(--accent);
+  color: var(--accent-2);
   text-transform: uppercase;
 }
 
@@ -199,6 +255,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* 408px = ancho original resultante (7 discos de 48px + huecos + padding) */
+  width: min(408px, 100%);
 }
 
 .preview-row {
@@ -218,8 +276,9 @@ body {
 }
 
 .preview-disc {
-  width: 48px;
-  height: 48px;
+  width: min(48px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   opacity: 0;
   transition: opacity 0.15s, transform 0.15s;
@@ -327,15 +386,47 @@ body {
 }
 
 .modal-content {
-  background: #1e293b;
-  border: 1px solid #334155;
-  padding: 30px 40px;
-  border-radius: 16px;
+  background:
+    radial-gradient(700px 320px at 20% -20%, #2b1a5e 0%, transparent 60%),
+    linear-gradient(160deg, var(--bg-2) 0%, var(--bg) 100%);
+  border: 1px solid var(--border);
+  padding: 28px 30px;
+  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
   gap: 15px;
+  width: min(420px, calc(100vw - 2rem));
+}
+
+.modal-content h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.modal-content p {
+  color: var(--muted);
+}
+
+/* ====== PIE DE AUTOR ====== */
+.meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {
@@ -345,5 +436,58 @@ body {
   }
   .preview-row {
     height: 35px;
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body {
+    padding: 0.9rem 0.7rem 2rem;
+    align-items: flex-start;
+  }
+
+  .top {
+    justify-content: center;
+    row-gap: 8px;
+  }
+
+  .top h1 {
+    font-size: 1.3rem;
+  }
+
+  .back {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .controls-top {
+    width: 100%;
+  }
+
+  .status-panel {
+    justify-content: center;
+    padding: 10px 12px;
+  }
+
+  .player-score {
+    padding: 5px 10px;
+    gap: 8px;
+  }
+
+  .turn-indicator {
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .modal-content {
+    padding: 22px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }

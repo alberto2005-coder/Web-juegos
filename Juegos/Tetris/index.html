@@ -3,19 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tetris</title>
+    <title>Tetris — Arcade Nova</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="fondo">
-        <div class="areaJuego" id="areaJuego">
-            <div class="pantallaInicioDerrota" id="pantallaInicio">
-                <h1>Tetris</h1>
-                <button id="botonIniciar">Empezar</button>
+    <div class="game">
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>Tetris — Arcade Nova</h1>
+        </header>
+
+        <div class="fondo">
+            <div class="areaJuego" id="areaJuego">
+                <div class="pantallaInicioDerrota" id="pantallaInicio">
+                    <h2>Tetris</h2>
+                    <p class="overlay-text">Encaja las piezas y completa líneas</p>
+                    <button id="botonIniciar">Empezar</button>
+                </div>
             </div>
         </div>
+
+        <p class="hint">← → mover · ↑ girar · ↓ acelerar</p>
+        <p class="meta">Autor: <a href="https://github.com/NekeritDevs/Web-juegos" target="_blank" rel="noopener noreferrer" title="Proyecto original: NekeritDevs/Web-juegos">Marcelo Ecuador</a></p>
     </div>
+
     <template id="plantillaJuego">
         
         <div class="juego" id="juego">
@@ -37,7 +49,8 @@
     <template id="plantillaDerrota">
         
         <div class="pantallaInicioDerrota" id="derrota">
-            <h1>Has perdido</h1>
+            <h2>Has perdido</h2>
+            <p class="overlay-text">La próxima pieza puede ser la tuya</p>
             <button id="botonReiniciar">Reiniciar</button>
         </div>
         

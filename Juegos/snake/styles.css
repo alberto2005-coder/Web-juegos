@@ -1,65 +1,216 @@
+/* =========================================================
+   Snake — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
+:root {
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.juego {
-  text-align: center;
-}
-
-.puntuacion {
-  text-align: center;
-  font-size: 40px;
-  padding-bottom: 1vh;
-}
-
-.instrucciones {
-  font-size: 20px;
-  padding-top: 1vh;
-}
-
 body {
+  font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: 'Arial', sans-serif;
-  color: white;
+  padding: 1.2rem 1rem 2.5rem;
 }
 
+.juego {
+  width: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ====== CABECERA ====== */
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.back {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
+}
+
+.top h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.scores {
+  display: flex;
+  gap: 8px;
+}
+
+.score-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.4rem 0.85rem;
+  text-align: center;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.score-box strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0;
+}
+
+/* ====== LIENZO ====== */
+.canvas-wrap {
+  position: relative;
+  width: min(640px, 100%);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 600;
+  background: #05070f;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  touch-action: none;
+}
+
+/* ====== FIN DEL JUEGO ====== */
 .fin {
   display: none;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.9);
-  padding: 40px;
-  border: 3px solid #ff0000;
-  border-radius: 10px;
+  background: rgba(13, 18, 38, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
   text-align: center;
 }
 
 .fin h2 {
-  color: #4ade80;
-  font-size: 36px;
-  margin-bottom: 20px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fin p {
+  color: var(--muted);
 }
 
 .fin button {
-  background: #4ade80;
-  color: #000;
+  background: var(--grad);
+  color: #fff;
   border: none;
-  padding: 15px 30px;
-  font-size: 18px;
-  font-family: 'Arial', sans-serif;
+  border-radius: 14px;
+  padding: 0.8rem 1.6rem;
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
   cursor: pointer;
-  margin-top: 20px;
-  border-radius: 5px;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.45);
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .fin button:hover {
-  background: #4ade80;
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* ====== PIE ====== */
+.hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+.meta {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .scores { width: 100%; justify-content: center; }
+  .score-box { padding: 0.35rem 0.65rem; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+  .fin { padding: 1.4rem 1.6rem; width: min(300px, 90%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Puzzle</title>
+    <title>Pokemon Puzzle — Arcade Nova</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="./logo.png"/>
 </head>
 <body>
-    
-    <img id="title" src="./images/logo/pokemon_logo.png" alt="Pokemon Puzzle Logo">
-    <div id="board">
-    </div>
 
-    <h1>Turnos: <span id="turnos">0</span></h1>
-    <a href="../../index.html" title="Regresar a la pagina principal"><img class="back-btn" src="./images/back-button/back.png" alt="back button"></a>
+    <div class="game">
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>Pokemon Puzzle — Arcade Nova</h1>
+            <div class="scores">
+                <div class="score-box">Turnos<strong id="turnos">0</strong></div>
+            </div>
+        </header>
+
+        <img id="title" src="./images/logo/pokemon_logo.png" alt="Pokemon Puzzle Logo">
+        <div id="board">
+        </div>
+
+        <p class="hint">Arrastra una ficha contigua a la casilla vacía para deslizarla</p>
+        <p class="meta">Autor: <a href="https://github.com/NekeritDevs/Web-juegos" target="_blank" rel="noopener noreferrer" title="Proyecto original: NekeritDevs/Web-juegos">Jairo Delgado</a></p>
+    </div>
 
     <ul class="background">
         <li></li>
@@ -35,11 +45,11 @@
             <div class="modal-box">
             <span class="close-btn" id="close-modal">&times;</span>
             <h2>GANASTE!</h2>
-            <img src="./images/pikachu/10.jpg " style="width: 400px;height: 400px;" alt="pikachu">
-            <span style="color: #485fa7;">Tu tiempo: <span id="final-time"></span></span><br>
-            <span style="color: #485fa7;">Turnos: <span id="final-turns"></span></span><br>
+            <img src="./images/pikachu/10.jpg" style="width: 100%; max-width: 400px; height: auto;" alt="pikachu">
+            <span style="color: #9aa4c7;">Tu tiempo: <span id="final-time"></span></span><br>
+            <span style="color: #9aa4c7;">Turnos: <span id="final-turns"></span></span><br>
             <button id="reiniciar-btn">Reiniciar</button>
-            <span style="display: block; color: rgb(129, 206, 231);">mas niveles, proximamente!</span>
+            <span class="modal-note">mas niveles, proximamente!</span>
             </div>
         </div>
     </div>

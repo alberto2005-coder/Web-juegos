@@ -1,10 +1,11 @@
 {
+  "id": "17",
   "nombre": "Space Invaders",
-  "descripcion": "Juego de space invaders",
-  "categoria": "Accion",
+  "descripcion": "Destruye la flota alienígena que desciende antes de que llegue al suelo.",
+  "categoria": "Acción",
   "autor": "Dorado Rodriguez",
   "github": "https://github.com/doradorodriguez",
   "miniatura": "./Juegos/space-invaders/logo.png",
   "url": "./Juegos/space-invaders/index.html",
-  "tags": ["Oneplayer", "Retro"]
+  "tags": ["oneplayer", "retro", "arcade"]
 }

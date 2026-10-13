@@ -1,10 +1,10 @@
 {
   "id": "6",
   "nombre": "Ahorcado",
-  "descripcion": "Juego del ahorcado clásico con categorías y pistas",
+  "descripcion": "Ahorcado clásico con categorías y pistas: adivina la palabra antes de quedarte sin intentos.",
   "url": "./Juegos/ahorcado/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Palabras", "Casual"],
+  "tags": ["oneplayer", "palabras", "casual", "logica"],
   "miniatura": "./Juegos/ahorcado/logo.png",
   "autor": "Alberto Ortiz",
   "github": "https://github.com/alberto2005-coder"

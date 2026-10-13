@@ -1,8 +1,18 @@
+/* =========================================================
+   El Ahorcado — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
 :root {
-  --bg-color: #0f172a;
-  --panel-bg: #1e293b;
-  --text-main: #f8fafc;
-  --accent: #38bdf8;
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
   --correct: #22c55e;
   --wrong: #ef4444;
 }
@@ -11,16 +21,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at top, #1e1b4b, #0f172a);
-  color: var(--text-main);
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 20px;
 }
 
@@ -33,7 +45,8 @@ body {
   gap: 15px;
 }
 
-.header {
+/* ====== CABECERA ====== */
+.top {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -42,27 +55,36 @@ body {
   gap: 10px;
 }
 
-.header h1 {
-  font-size: 1.8rem;
-  text-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+.top h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
 }
 
-.btn-back {
-  color: #94a3b8;
+.back {
+  color: var(--muted);
   text-decoration: none;
-  font-size: 0.95rem;
-  padding: 6px 12px;
-  background: var(--panel-bg);
-  border-radius: 8px;
-  transition: all 0.2s;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 0.55rem 0.9rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
-.btn-back:hover {
-  color: #fff;
-  background: #334155;
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
 }
 
 .stats-top {
@@ -72,77 +94,88 @@ body {
 }
 
 .stat-pill {
-  background: rgba(249, 115, 22, 0.2);
+  background: var(--card);
   color: #fb923c;
-  border: 1px solid rgba(249, 115, 22, 0.4);
+  border: 1px solid rgba(251, 146, 60, 0.4);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
+/* ====== BOTONES ====== */
 .btn {
   border: none;
-  border-radius: 8px;
-  padding: 8px 14px;
-  font-weight: bold;
+  border-radius: 14px;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: transform 0.25s ease, filter 0.25s ease, background 0.2s ease;
 }
 
-.btn-reset {
-  background: #334155;
+.btn-reset,
+.btn-primary {
+  background: var(--grad);
   color: #fff;
-}
-
-.btn-reset:hover {
-  background: #475569;
+  box-shadow: 0 10px 26px rgba(124, 58, 237, 0.45);
 }
 
 .btn-primary {
-  background: #2563eb;
-  color: white;
-  padding: 10px 20px;
-  font-size: 1.1rem;
+  padding: 0.7rem 1.4rem;
+  font-size: 1.05rem;
 }
 
+.btn-reset:hover,
 .btn-primary:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* ====== BARRAS DE INFO ====== */
 .category-bar {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--panel-bg);
+  flex-wrap: wrap;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 10px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
   font-size: 1rem;
 }
 
 .badge {
-  color: var(--accent);
-  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-2);
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.35);
   padding: 4px 10px;
   border-radius: 8px;
 }
 
 .badge-lives {
-  color: #ef4444;
+  color: #f87171;
   font-weight: bold;
   font-size: 1.1rem;
 }
 
+/* ====== ZONA DE JUEGO ====== */
 .main-display {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background: var(--panel-bg);
+  background: var(--card);
+  border: 1px solid var(--border);
   padding: 18px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   flex-wrap: wrap;
   gap: 15px;
 }
@@ -151,8 +184,14 @@ body {
   background: #090d16;
   border-radius: 12px;
   padding: 10px;
-  border: 1px solid #334155;
+  border: 1px solid var(--border);
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+.canvas-box canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .word-section {
@@ -172,7 +211,7 @@ body {
 .letter-slot {
   width: 38px;
   height: 48px;
-  border-bottom: 3px solid var(--accent);
+  border-bottom: 3px solid var(--accent-2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,12 +228,13 @@ body {
 
 .hint-box {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--muted);
   font-style: italic;
   max-width: 250px;
   text-align: center;
 }
 
+/* ====== TECLADO ====== */
 .keyboard {
   display: flex;
   flex-wrap: wrap;
@@ -208,10 +248,10 @@ body {
 .key-btn {
   width: 40px;
   height: 44px;
-  background: #334155;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
@@ -223,20 +263,23 @@ body {
 }
 
 .key-btn:hover:not(:disabled) {
-  background: #475569;
+  background: rgba(124, 58, 237, 0.28);
+  border-color: var(--accent-2);
   transform: translateY(-2px);
 }
 
 .key-btn.correct {
   background: var(--correct);
   border-color: #16a34a;
+  color: #052e16;
   cursor: not-allowed;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .key-btn.wrong {
   background: var(--wrong);
   border-color: #dc2626;
+  color: #450a0a;
   cursor: not-allowed;
   opacity: 0.4;
 }
@@ -246,12 +289,13 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Modal */
+/* ====== MODAL ====== */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(13, 18, 38, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -263,12 +307,68 @@ body {
 }
 
 .modal-content {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: linear-gradient(160deg, #121731 0%, #0d1226 100%);
+  border: 1px solid var(--border);
   padding: 30px 40px;
-  border-radius: 16px;
+  border-radius: 22px;
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.modal-content h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.modal-content p {
+  color: var(--muted);
+}
+
+.modal-content b {
+  color: var(--text);
+  letter-spacing: 0.08em;
+}
+
+/* ====== PIE ====== */
+.meta {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .stats-top { width: 100%; justify-content: center; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+  .category-bar { justify-content: center; text-align: center; padding: 10px 14px; }
+  .main-display { padding: 14px 10px; }
+  .letter-slot { width: 30px; height: 42px; font-size: 1.5rem; }
+  .modal-content { padding: 24px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

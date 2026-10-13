@@ -5,24 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="logo.png">
-  <title>Snake</title>
+  <title>Snake — Arcade Nova</title>
 </head>
 <body>
     <div class="juego">
-        <div class="puntuacion">
-            <span>PUNTUACION: 
-                <span id="puntos">0</span></span>
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>🐍 Snake — Arcade Nova</h1>
+            <div class="puntuacion scores">
+                <div class="score-box">Puntos<strong id="puntos">0</strong></div>
+            </div>
+        </header>
+
+        <div class="canvas-wrap">
+            <canvas id="juegoCanvas" width="800" height="600" aria-label="Juego Snake"></canvas>
+            <div class="fin" id="finJuego">
+                <h2>FIN DEL JUEGO</h2>
+                <p>PUNTOS CONSEGUIDOS: <span id="puntosFinal">0</span></p>
+                <button onclick="reiniciarJuego()">REINICIAR JUEGO</button>
+            </div>
         </div>
-        <canvas id="juegoCanvas" width="800" height="600"></canvas>
-        <div class="instrucciones">
-            <div>INSTRUCCIONES:</div>
-            <div>Utiliza las flechas del teclado para mover la serpiente.</div>
-        </div>
-        <div class="fin" id="finJuego">
-            <h2>FIN DEL JUEGO</h2>
-            <p>PUNTOS CONSEGUIDOS: <span id="puntosFinal">0</span></p>
-            <button onclick="reiniciarJuego()">REINICIAR JUEGO</button>
-        </div>
+
+        <p class="hint instrucciones">Utiliza las flechas del teclado para mover la serpiente</p>
+        <p class="meta">Autor: <a href="https://github.com/doradorodriguez" target="_blank" rel="noopener noreferrer">Dorado Rodriguez</a></p>
     </div>
     <script src="script.js"></script>
 </body>

@@ -1,87 +1,231 @@
+/* =========================================================
+   Memory — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
+:root {
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    text-align: center;
-    background-color: #34495e;
-    color: #ecf0f1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
+  font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.2rem 1rem 2.5rem;
+  text-align: center;
 }
 
-h1 {
-    color: #2ecc71;
+.game {
+  width: min(560px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.header {
-    width: 100%;
-    margin-bottom: 20px;
+/* ====== CABECERA ====== */
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
 }
 
-#score {
-    font-size: 24px;
-    font-weight: bold;
+.back {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
+}
+
+.top h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+.scores {
+  display: flex;
+  gap: 8px;
+}
+
+.score-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.55rem 0.95rem;
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ====== TABLERO ====== */
 .game-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  width: min(430px, 100%);
 }
 
 .card {
-    width: 100px;
-    height: 100px;
-    background-color: #3498db;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    color: #3498db;
-    transition: transform 0.3s, background-color 0.3s;
-    transform-style: preserve-3d;
+  width: auto;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(26px, 9vw, 40px);
+  color: #e8ecff;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  border-color: var(--accent-2);
 }
 
 .card.flipped {
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    transform: rotateY(180deg);
+  background: #e8ecff;
+  border-color: #e8ecff;
+  color: #0d1226;
+  transform: rotateY(180deg);
 }
 
 .card.matched {
-    background-color: #2ecc71;
-    color: #2c3e50;
-    cursor: default;
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #0d1226;
+  cursor: default;
 }
 
+/* ====== MENSAJE / ACCIONES ====== */
 .message {
-    font-size: 24px;
-    margin: 20px 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  min-height: 1.9rem;
+  margin: 1.3rem 0 0.2rem;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 16px;
-    background-color: #2ecc71;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.btn {
+  margin-top: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.72rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--grad);
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(124, 58, 237, 0.45);
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-button:hover {
-    background-color: #27ae60;
+.btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+.meta {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .scores { width: 100%; justify-content: center; }
+  .score-box { padding: 0.4rem 0.75rem; font-size: 0.85rem; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+  .game-board { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

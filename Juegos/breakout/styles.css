@@ -238,9 +238,14 @@ canvas {
   text-decoration: underline;
 }
 
-@media (max-width: 520px) {
-  .top h1 { font-size: 1.15rem; }
-  .score-box { padding: 0.35rem 0.6rem; }
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .scores { width: 100%; justify-content: center; }
+  .score-box { padding: 0.35rem 0.65rem; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

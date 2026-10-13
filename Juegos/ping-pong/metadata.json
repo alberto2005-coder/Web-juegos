@@ -1,10 +1,10 @@
 {
   "id": "5",
   "nombre": "Ping pong",
-  "descripcion": "Juego de Ping pong",
+  "descripcion": "Rally de tenis de mesa: devuelve la pelota con el ratón y no dejes que pase.",
   "url": "./Juegos/ping-pong/index.html",
   "categoria": "Deportes",
-  "tags": ["Oneplayer", "Deportes", "Retro"],
+  "tags": ["oneplayer", "deportes", "retro", "reflejos"],
   "miniatura": "./Juegos/ping-pong/logo.png",
   "autor": "Fernando Brandan"
 }

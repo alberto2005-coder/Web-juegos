@@ -1,10 +1,11 @@
 {
+  "id": "18",
   "nombre": "Snake",
-  "descripcion": "Juego de Snake",
+  "descripcion": "Guiña a la serpiente para comer y crecer sin chocar con los muros ni morderte.",
   "categoria": "Arcade",
   "autor": "Dorado Rodriguez",
   "github": "https://github.com/doradorodriguez",
   "miniatura": "./Juegos/snake/logo.png",
   "url": "./Juegos/snake/index.html",
-  "tags": ["Oneplayer", "Neon"]
+  "tags": ["oneplayer", "neon", "arcade"]
 }

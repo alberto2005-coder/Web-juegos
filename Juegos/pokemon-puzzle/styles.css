@@ -1,3 +1,20 @@
+/* =========================================================
+   Pokemon Puzzle — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
+:root {
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+}
+
  @font-face {
         font-family: "PokeFont"; /* Choose a descriptive name for your font */
         src: url("./images/fonts/Pokemon\ Solid.ttf") format("truetype"); /* Adjust the path to your .ttf file */
@@ -5,33 +22,128 @@
         font-style: normal; /* Optional: Define font style if applicable */
     }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    color: #485fa7;
+* {
+    box-sizing: border-box;
 }
 
+body {
+    font-family: "Inter", "Segoe UI", Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: var(--text);
+    min-height: 100vh;
+    margin: 0;
+    padding: 1.2rem 1rem 2.5rem;
+    display: flex;
+    justify-content: center;
+    background:
+        radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+        radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+        linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+}
+
+.game {
+    width: min(560px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ====== CABECERA ====== */
+.top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.back {
+    color: var(--muted);
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.55rem 0.9rem;
+    border-radius: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.back:hover {
+    color: var(--text);
+    border-color: var(--accent-2);
+    transform: translateX(-3px);
+}
+
+.top h1 {
+    font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+    letter-spacing: normal;
+    line-height: 1.25;
+    font-size: 1.5rem;
+    font-weight: 800;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+}
+
+.scores {
+    display: flex;
+    gap: 8px;
+}
+
+.score-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.4rem 0.85rem;
+    text-align: center;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.score-box strong {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: 0;
+}
+
+/* ====== LOGO Y TABLERO ====== */
 #title {
-    height: 150px;
-    width: 400px;
-    margin-bottom: 80px;
+    display: block;
+    width: min(400px, 100%);
+    height: auto;
+    margin: 0 auto 1.8rem;
 }
 
 #board {
-    width: 360px;
-    height: 360px;
+    width: min(360px, 100%);
+    aspect-ratio: 1 / 1;
     background-color: lightblue;
     border: 10px solid #485fa7;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     box-shadow: -8px 8px #2a3669;
 }
 
 #board img {
-    width: 118px;
-    height: 118px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border: 1px solid #485fa7;
+    cursor: grab;
 }
 
 @keyframes zoomInOut {
@@ -47,29 +159,34 @@ body {
 }
 
 button {
-    font-family: PokeFont, Arial, Helvetica, sans-serif;
+    font-family: PokeFont, "Inter", Arial, Helvetica, sans-serif;
     letter-spacing: 1.5px;
     margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.5rem;
-    background: #ffc839;
-    color: #485fa7;
+    padding: 0.75rem 1.6rem;
+    font-size: 1.2rem;
+    background: var(--grad);
+    color: #fff;
     border: none;
-    border-radius: 6px;
+    border-radius: 14px;
     cursor: pointer;
+    box-shadow: 0 10px 26px rgba(124, 58, 237, 0.45);
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 button:hover {
     animation: zoomInOut 2s infinite alternate ease-in-out;
 }
 
+/* ====== MODAL ====== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(13, 18, 38, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -77,41 +194,65 @@ button:hover {
 }
 
 .modal-box {
-  background: white;
+  background: linear-gradient(160deg, #121731 0%, #0d1226 100%);
+  border: 1px solid var(--border);
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 22px;
   width: 90%;
   max-width: 400px;
   position: relative;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.modal-note {
+    display: block;
+    color: var(--accent-2);
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 h1{
-    font-family: PokeFont, Arial, Helvetica, sans-serif;
+    font-family: PokeFont, "Inter", Arial, Helvetica, sans-serif;
     letter-spacing: 1px;
+    line-height: 1.3;
+    color: var(--text);
 }
 
 h2 {
-    font-family: PokeFont, Arial, Helvetica, sans-serif;
+    font-family: PokeFont, "Inter", Arial, Helvetica, sans-serif;
     letter-spacing: 8px;
+    line-height: 1.3;
     -webkit-text-stroke: 2px #ffc839;
-    font-size: 50px;
+    font-size: clamp(34px, 10vw, 50px);
     margin-top: 10px;
     margin-bottom: 5px;
     user-select: none;
 }
 
-.back-btn {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: box-shadow 0.3s ease-in-out;
+/* ====== PIE / AYUDA ====== */
+.hint {
+    color: var(--muted);
+    font-size: 0.84rem;
+    margin-top: 1.1rem;
+    text-align: center;
+    max-width: 100%;
 }
 
-.back-btn:hover {
-        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Cyan glow */
-    }
+.meta {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.meta a {
+    color: var(--accent-2);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.meta a:hover {
+    text-decoration: underline;
+}
 
 .close-btn {
     color: #fb3b2f;
@@ -141,9 +282,10 @@ h2 {
     left: 0;
     margin: 0;
     padding: 0;
-    background: white;
+    background: transparent;
     overflow: hidden;
     z-index: -1;
+    pointer-events: none;
 }
 .background li {
     position: absolute;
@@ -228,4 +370,24 @@ h2 {
     height: 132px;
     bottom: -132px;
     animation-delay: 0s;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+    body { padding: 0.9rem 0.7rem 2rem; }
+    .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+    .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+    .scores { width: 100%; justify-content: center; }
+    .score-box { padding: 0.35rem 0.65rem; }
+    .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+    #title { margin-bottom: 1.2rem; }
+    #board { border-width: 6px; box-shadow: -6px 6px #2a3669; }
+    .modal-box { padding: 1.5rem 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }

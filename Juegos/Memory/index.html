@@ -2,20 +2,31 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Juego de la Memoria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory — Arcade Nova</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-    <h1>Juego de la Memoria</h1>
-    <div class="header">
-        <div id="score">Puntaje: 0</div>
+    <div class="game">
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>Memory — Arcade Nova</h1>
+            <div class="scores">
+                <div id="score" class="score-box">Puntaje: 0</div>
+            </div>
+        </header>
+
+        <div class="game-container">
+            <div class="game-board" id="game-board"></div>
+        </div>
+
+        <div class="message" id="message"></div>
+        <button class="btn" onclick="startGame()">Reiniciar</button>
+
+        <p class="hint">Haz clic en dos cartas para intentar encontrar la pareja</p>
+        <p class="meta">Autor: <a href="https://github.com/NekeritDevs/Web-juegos" target="_blank" rel="noopener noreferrer" title="Proyecto original: NekeritDevs/Web-juegos">Hevieri</a></p>
     </div>
-    <div class="game-container">
-        <div class="game-board" id="game-board"></div>
-    </div>
-    <div class="message" id="message"></div>
-    <button onclick="startGame()">Reiniciar</button>
     <script src="script.js"></script>
 </body>
 </html>

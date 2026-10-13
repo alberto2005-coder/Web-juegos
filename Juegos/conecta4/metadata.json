@@ -1,10 +1,10 @@
 {
   "id": "10",
   "nombre": "Conecta 4",
-  "descripcion": "Juego del Conecta 4 clásico con modo contra IA y 2 jugadores",
+  "descripcion": "Alinea cuatro fichas ganando a la IA o a otro jugador en el mismo dispositivo.",
   "url": "./Juegos/conecta4/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Two players", "Contra IA"],
+  "tags": ["oneplayer", "twoplayers", "contra-ia", "logica"],
   "miniatura": "./Juegos/conecta4/logo.png",
   "autor": "Alberto Ortiz",
   "github": "https://github.com/alberto2005-coder"

@@ -1,9 +1,10 @@
 {
+  "id": "8",
   "nombre": "Pokemon Puzzle",
-  "descripcion": "Juego de puzzle deslizante",
+  "descripcion": "Rompecabezas deslizante con Pokémon: desliza las fichas hasta recomponer la imagen.",
   "url": "./Juegos/pokemon-puzzle/index.html",
   "categoria": "Puzzle",
-  "tags": ["Oneplayer", "Puzzle", "Pokemon"],
+  "tags": ["oneplayer", "puzzle", "pokemon"],
   "miniatura": "./Juegos/pokemon-puzzle/logo.png",
   "autor": "Jairo Delgado"
 }

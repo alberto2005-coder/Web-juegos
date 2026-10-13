@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Space - Invaders</title>
+    <title>Space Invaders — Arcade Nova</title>
     <link rel="icon" type="image/png" href="./logo.png"/>
 </head>
 <body>
     <div class="juego">
-        <div class="puntuacion">
-            <div>VIDAS: <span id="vidas">3</span></div>
-            <div>NIVEL: <span id="nivel">1</span></div>
-            <div>PUNTOS: <span id="puntos">0</span></div>
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>👾 Space Invaders — Arcade Nova</h1>
+            <div class="puntuacion scores">
+                <div class="score-box">Vidas<strong id="vidas">3</strong></div>
+                <div class="score-box">Nivel<strong id="nivel">1</strong></div>
+                <div class="score-box">Puntos<strong id="puntos">0</strong></div>
+            </div>
+        </header>
+
+        <div class="canvas-wrap">
+            <canvas id="juegoCanvas" width="800" height="600" aria-label="Juego Space Invaders"></canvas>
+            <div class="final" id="final">
+                <h2>FIN DEL JUEGO</h2>
+                <p>PUNTOS CONSEGUIDOS: <span id="puntosFinal">0</span></p>
+                <button onclick="reiniciarJuego()">REINICIAR JUEGO</button>
+            </div>
         </div>
-        <canvas id="juegoCanvas" width="800" height="600"></canvas>
-        <div class="controles">
-            CONTROLES: <- MOVERSE ->  | ESPACIO: DISPARAR | P: PAUSA
-        </div>
-        <div class="final" id="final">
-            <h2>FIN DEL JUEGO</h2>
-            <p>PUNTOS CONSEGUIDOS: <span id="puntosFinal">0</span></p>
-            <button onclick="reiniciarJuego()">REINICIAR JUEGO</button>
-        </div>
+
+        <p class="hint controles">← → Moverse · Espacio: Disparar · P: Pausa</p>
+        <p class="meta">Autor: <a href="https://github.com/doradorodriguez" target="_blank" rel="noopener noreferrer">Dorado Rodriguez</a></p>
     </div>
     <script src="script.js"></script>
 </body>

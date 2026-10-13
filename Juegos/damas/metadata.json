@@ -1,10 +1,10 @@
 {
   "id": "9",
   "nombre": "Damas",
-  "descripcion": "Juego clásico de damas con modo 1J contra IA y 2J local",
+  "descripcion": "Damas clásicas: come las piezas rivales, corona tus damas y gana a la IA o a un amigo.",
   "url": "./Juegos/damas/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Two players", "Contra IA"],
+  "tags": ["oneplayer", "twoplayers", "contra-ia", "logica"],
   "miniatura": "./Juegos/damas/logo.png",
   "autor": "Alberto Ortiz",
   "github": "https://github.com/alberto2005-coder"

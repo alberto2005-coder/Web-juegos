@@ -1,13 +1,30 @@
+/* =========================================================
+   Ajedrez — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
 :root {
+  /* ===== Sistema de diseño Arcade Nova ===== */
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
+
+  /* ===== Variables del juego (no tocar piezas/tablero) ===== */
   --border-width: calc(var(--diameter-tile) / 60);
-  --diameter-board: min(85vw, 85vh);
+  --diameter-board: min(86vw, 66vh, 900px);
   --diameter-tile: calc(1 / 8 * var(--diameter-board));
-  --edge-width: calc((min(100vw, 100vh) - var(--diameter-board)) * 0.3);
+  --edge-width: min(64px, max(44px, calc((min(100vw, 100vh) - var(--diameter-board)) * 0.3)));
 
   /* Colores clásicos blanco/negro */
   --color-board-light: #ffffff; /* blanco */
   --color-board-dark: #000000;  /* negro */
-  --color-background: #f5f5f5;  /* fondo gris claro */
+  --color-background: #0d1226;  /* lo sobreescribe main.js según el turno */
   --color-shadow: rgba(0,0,0,0.3);
   --color-shadow-lighter: rgba(0,0,0,0.15);
   --color-success: #1d83e0;
@@ -19,7 +36,7 @@
   --piece-scale: 0.85;
 }
 
-/* Barra superior */
+/* Barra superior de controles */
 aside {
   display: flex;
   justify-content: space-between;
@@ -29,27 +46,35 @@ aside {
   transform: translateY(-50%);
   width: 100%;
   z-index: 999;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 aside div {
   align-items: center;
-  color: black; /* texto negro */
+  color: var(--text);
   display: flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 aside div > * {
   align-items: center;
   display: flex;
 }
 aside div > * + * {
-  margin-left: calc(var(--border-width) * 2);
+  margin-left: 6px;
 }
 aside div h3,
 aside div label {
-  font-size: calc(var(--edge-width) * 0.3);
-  height: calc(var(--edge-width) * 0.3);
+  font-size: calc(var(--edge-width) * 0.24);
+  height: auto;
   line-height: 1;
   margin: 0;
   text-transform: uppercase;
-  color: black; /* letras negras */
+  color: var(--muted); /* rótulos */
 }
 aside div label { cursor: pointer; }
 aside div input {
@@ -61,16 +86,26 @@ aside div input:checked + * { font-weight: bold; opacity: 1; }
 aside div svg {
   height: calc(var(--edge-width) * 0.5);
   width: auto;
-  fill: black; /* iconos negros */
+  fill: currentColor; /* iconos */
 }
 
 html, body { height: 100%; }
+
 body {
-  background: var(--color-background);body {
-  background: var(--color-background) !important;
-}
-  overflow: hidden;
-  transition: background-color 250ms ease-in-out;
+  font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 1rem 2rem;
+  overflow-x: hidden;
 }
 
 /* Toggle más visible */
@@ -84,7 +119,7 @@ aside div input:checked + * {
   font-weight: bold;
   opacity: 1;
   color: white;
-  background: var(--color-success);
+  background: var(--accent);
   text-shadow: 0 0 4px rgba(0,0,0,0.5);
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
@@ -95,22 +130,93 @@ aside div svg {
   fill: currentColor;
 }
 
-html, body { height: 100%; }
-body { background: var(--color-background); overflow: hidden; }
+/* ===== CABECERA ARCADE NOVA ===== */
+.top {
+  width: min(760px, 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+
+.back {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
+}
+
+.top h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: right;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-top: 0.6rem;
+  text-align: center;
+  max-width: 640px;
+}
+
+.meta {
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover { text-decoration: underline; }
 
 /* Tablero */
 #view {
-  background: var(--color-background);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 16px;
   box-shadow:
-    0 0 0 calc(var(--border-width) * 3) var(--color-shadow-lighter),
-    0 10px 20px var(--color-shadow);
+    0 0 0 4px rgba(124, 58, 237, 0.18),
+    0 18px 40px rgba(0, 0, 0, 0.55);
   height: var(--diameter-board);
-  margin: calc((100vh - var(--diameter-board)) * 0.5)
-          calc((100vw - var(--diameter-board)) * 0.5);
-  position: relative;
   width: var(--diameter-board);
+  margin: calc(var(--edge-width) * 0.9 + 1.5rem) auto 0;
+  position: relative;
   perspective: 1200px;
+}
+
+/* Anillo de turno: main.js pinta --color-background (blanco/negro) según turno */
+#view::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 20px;
+  border: 5px solid rgba(124, 58, 237, 0.35);
+  border-top-color: var(--color-background);
+  pointer-events: none;
+  z-index: 100;
 }
 
 .board {
@@ -292,4 +398,32 @@ svg.black { fill: var(--color-black); stroke: var(--color-white); stroke-width: 
   fill: var(--color-danger);
   transform: scale(0.7);
   transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.2rem; white-space: normal; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+
+  #view { margin-top: calc(var(--edge-width) * 0.95 + 2.2rem); }
+
+  aside { gap: 4px; justify-content: center; }
+  aside div { padding: 3px 6px; border-radius: 10px; }
+  aside div > * + * { margin-left: 4px; }
+  aside div h3,
+  aside div label { font-size: 10px; }
+  aside div svg { height: 16px; }
+  aside div input + * { padding: 0.15em 0.35em; }
+
+  .hint { font-size: 0.78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

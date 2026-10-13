@@ -2,12 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Gatitos Locos 🐱 — Juego de gatos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+<title>Gatitos Locos — Arcade Nova</title>
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div id="app">
+  <header class="top">
+    <a class="back" href="../../index.html">← Arcade Nova</a>
+    <h1>Gatitos Locos — Arcade Nova</h1>
+  </header>
+
   <canvas id="game"></canvas>
 
   <!-- HUD -->
@@ -24,7 +29,7 @@
   <!-- Menú -->
   <div id="menu" class="panel">
     <div class="cat-logo">🐱</div>
-    <h1>Gatitos Locos</h1>
+    <h2>Gatitos Locos</h2>
     <p class="subtitle">¡Acaricia a todos los gatos antes de que escapen!</p>
     <ul class="rules">
       <li>🖱️ <b>Clic / toque</b> a un gato = <b>+10 puntos</b> y un miau.</li>
@@ -39,7 +44,7 @@
   <!-- Game over -->
   <div id="over" class="panel hidden">
     <div class="cat-logo">😿</div>
-    <h1>¡Se escaparon!</h1>
+    <h2>¡Se escaparon!</h2>
     <p class="final">Puntuación: <span id="finalScore">0</span></p>
     <p class="newbest hidden" id="newBest">🎉 ¡Nuevo récord!</p>
     <p class="stats" id="stats">Acariciaste 0 gatos</p>
@@ -49,9 +54,11 @@
   <!-- Pausa -->
   <div id="pause" class="panel hidden">
     <div class="cat-logo">⏸️</div>
-    <h1>Pausa</h1>
+    <h2>Pausa</h2>
     <button id="resumeBtn" class="btn">▶ Continuar</button>
   </div>
+
+  <p class="meta">Autor: <a href="https://github.com/alberto2005-coder" target="_blank" rel="noopener noreferrer">Alberto Ortiz</a></p>
 </div>
 
 <script src="game.js"></script>

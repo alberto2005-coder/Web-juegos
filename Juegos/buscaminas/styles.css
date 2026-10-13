@@ -322,9 +322,18 @@ body {
   text-decoration: underline;
 }
 
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+}
+
 @media (max-width: 480px) {
-  .top h1 { font-size: 1.2rem; }
   .hud-box { min-width: 74px; padding: 0.45rem 0.7rem; }
+  .level { padding: 0.45rem 0.25rem; }
+  .level span { font-size: 0.66rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,10 +1,10 @@
 {
   "id": "4",
   "nombre": "Tetris",
-  "descripcion": "Juego del Tetris",
+  "descripcion": "Encaja las piezas y completa líneas: el puzle de bloques más adictivo de la historia.",
   "url": "./Juegos/Tetris/index.html",
   "categoria": "Puzzle",
-  "tags": ["Oneplayer", "Puzzle", "Retro"],
+  "tags": ["oneplayer", "puzzle", "retro", "clasico"],
   "miniatura": "./Juegos/Tetris/logo.png",
   "autor": "Marcelo Ecuador"
 }

@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pac-Man</title>
+    <title>Pac-Man — Arcade Nova</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="game-info">
-        <div class="score">SCORE: <span id="score">0</span></div>
-        <div class="lives">LIVES: <span id="lives">3</span></div>
-    </div>
-    
-    <div id="gameBoard"></div>
-    
-    <div class="controls">
-        <button id="startBtn" onclick="startGame()">INICIAR JUEGO</button>
-        <p>Usa las flechas para mover a Pac-Man</p>
+    <div class="game">
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>👾 Pac-Man — Arcade Nova</h1>
+            <div class="scores">
+                <div class="score-box score">Puntos<strong id="score">0</strong></div>
+                <div class="score-box lives">Vidas<strong id="lives">3</strong></div>
+            </div>
+        </header>
+
+        <div id="gameBoard" class="board"></div>
+
+        <p class="hint">Usa las flechas para mover a Pac-Man</p>
+        <button id="startBtn" class="btn" onclick="startGame()">INICIAR JUEGO</button>
+
+        <p class="meta">Autor: <a href="https://github.com/alberto2005-coder" target="_blank" rel="noopener noreferrer">Alberto Ortiz</a></p>
     </div>
 
     <script src="script.js"></script>

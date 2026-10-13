@@ -1,113 +1,285 @@
-body{
-    margin: auto;
-}
-button{
-    background-color: #5534C0;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: medium;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #5534C0;
-    transition: all 0.3s ease;
-}
-button:hover{
-    background-color: #6740EA;
-    box-shadow: 0 0 10px #6740EA;
+/* =========================================================
+   Tetris — Arcade Nova
+   Basado en NekeritDevs/Web-juegos (MIT)
+   ========================================================= */
+
+:root {
+  --bg: #0d1226;
+  --bg-2: #121731;
+  --text: #e8ecff;
+  --muted: #9aa4c7;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #7c3aed;
+  --accent-2: #22d3ee;
+  --grad: linear-gradient(135deg, #7c3aed 0%, #4f46e5 45%, #22d3ee 100%);
 }
 
-.fondo{
-    background-color: black;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-}
-.areaJuego{
-    background-color: #6740EA;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.pantallaInicioDerrota{
-    position:fixed;
-    z-index: 1;
-    background-color: #EBDA3F;
-    height: 50%;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.juego{
-    background-color: #6C59AB;
-    height: calc(100% - 2rem);
-    width: calc(100% - 2rem);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: #EBDA3F 5px solid;
-    border-radius: 10px;
+body {
+  font-family: "Inter", "Segoe UI", system-ui, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 500px at 15% -10%, #2b1a5e 0%, transparent 55%),
+    radial-gradient(900px 600px at 110% 10%, #0c3f52 0%, transparent 50%),
+    linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem 1rem 2.5rem;
 }
 
-#tablero{
-    background-color: #37227C;
-    width: 45%;
-    aspect-ratio: 1/2;
-    display: grid;
-    grid-template-rows: repeat(20, 1fr);
-    grid-template-columns: repeat(10, 1fr);
-    border: 2px solid white;
-    box-sizing: border-box;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border-radius: 10px;
+.game {
+  width: min(720px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#informacion{
-    background-color: #37227C;
-    width: 45%;
-    aspect-ratio: 1/2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: #EBDA3F;
-    font-family: 'Arial', sans-serif;
-    font-size: small;
-    border: 2px solid #EBDA3F;
-    border-radius: 10px;
-}
-.siguientePieza{
-    background-color: #6C59AB;
-    width: 80%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid #EBDA3F;
-    box-shadow: 0 0 10px #EBDA3F;
-    border-radius: 10px;
-    margin-top: 1rem;
+/* ====== CABECERA ====== */
+.top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.siguientePieza h2{
-    margin: 1rem;
-    padding: 0;
-    font-size: medium;
+.back {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.55rem 0.9rem;
+  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
-.siguientePieza canvas{
-    background-color: #37227C;
-    border: 2px solid #EBDA3F;
-    border-radius: 10px;
-    width: 80%;
-    aspect-ratio: 2/1;
-    margin-bottom: 1rem;
+.back:hover {
+  color: var(--text);
+  border-color: var(--accent-2);
+  transform: translateX(-3px);
+}
+
+.top h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+/* ====== ESCENARIO ====== */
+.fondo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.areaJuego {
+  position: relative;
+  width: min(100%, 600px, max(300px, calc(111vh - 260px)));
+  min-height: clamp(300px, 52vh, 430px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.juego {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+#tablero {
+  width: 45%;
+  aspect-ratio: 1 / 2;
+  background-color: #37227c;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  display: grid;
+  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.45);
+}
+
+#informacion {
+  width: 45%;
+  aspect-ratio: 1 / 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px;
+  background: linear-gradient(180deg, #0b1020 0%, #151b3d 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: clamp(0.62rem, 2.8vw, 0.85rem);
+  text-align: center;
+  overflow: hidden;
+}
+
+#informacion h2 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+#informacion h2 span {
+  color: var(--accent-2);
+}
+
+.siguientePieza {
+  width: 88%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 0 14px rgba(124, 58, 237, 0.35);
+}
+
+.siguientePieza h2 {
+  margin: 0.7rem 0.4rem;
+  font-size: 1em;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+.siguientePieza canvas {
+  width: 84%;
+  aspect-ratio: 2 / 1;
+  background-color: #37227c;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 0.7rem;
+}
+
+/* ====== PANTALLAS DE INICIO / DERROTA ====== */
+.pantallaInicioDerrota {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: min(420px, 92%);
+  padding: 1.9rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  text-align: center;
+  background: rgba(13, 18, 38, 0.94);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pantallaInicioDerrota h2 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.overlay-text {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+/* ====== BOTONES ====== */
+button {
+  font-family: inherit;
+  background: var(--grad);
+  border: none;
+  padding: 0.72rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 14px;
+  box-shadow: 0 10px 26px rgba(124, 58, 237, 0.45);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* ====== PIE ====== */
+.hint {
+  color: var(--muted);
+  font-size: 0.84rem;
+  margin-top: 0.9rem;
+  text-align: center;
+}
+
+.meta {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.meta a {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 560px) {
+  body { padding: 0.9rem 0.7rem 2rem; }
+  .top { flex-wrap: wrap; justify-content: center; row-gap: 0.55rem; }
+  .top h1 { order: -1; width: 100%; text-align: center; font-size: 1.3rem; white-space: normal; }
+  .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
+  .areaJuego { width: 100%; min-height: clamp(280px, 46vh, 360px); }
+  .juego { gap: 0.5rem; padding: 8px; }
+  #informacion { font-size: 0.68rem; padding: 6px 4px; }
+  .siguientePieza h2 { margin: 0.5rem 0.2rem; font-size: 0.9em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }

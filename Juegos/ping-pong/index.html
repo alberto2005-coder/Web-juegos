@@ -3,39 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ping Pong</title>
+    <title>Ping Pong — Arcade Nova</title>
     <link href="styles.css" rel="stylesheet">
-      <link rel="icon" type="image/png" href="logo.png">
-
+    <link rel="icon" type="image/png" href="logo.png">
 </head>
 <body>
-    <div class="start-screen" id="startScreen">
-        <h1 style="margin-top: 0; font-size: 36px; text-shadow: 0 0 15px #00ff88;">🏓 PING PONG</h1>
-        <p style="margin: 20px 0; font-size: 16px; color: #ffffff;">
-            ¡Bienvenido al clásico juego de Ping Pong!<br>
-            Primer jugador en llegar a 5 puntos gana.
-        </p>
-        <div style="margin: 20px 0; font-size: 14px; color: #cccccc;">
-            <p><strong>Controles:</strong></p>
-            <p>Jugador 1: W/S &nbsp;•&nbsp; Jugador 2: ↑/↓</p>
-            <p>Espacio: Pausar &nbsp;•&nbsp; R: Reiniciar</p>
+    <div class="game">
+        <header class="top">
+            <a class="back" href="../../index.html">← Arcade Nova</a>
+            <h1>🏓 Ping Pong — Arcade Nova</h1>
+            <div class="scores">
+                <div class="score-box">Jugador 1<strong id="scoreLeft">0</strong></div>
+                <div class="score-box">Jugador 2<strong id="scoreRight">0</strong></div>
+            </div>
+        </header>
+
+        <div class="canvas-wrap">
+            <canvas id="c" aria-label="Juego Ping Pong"></canvas>
+
+            <div class="start-screen" id="startScreen">
+                <h2>¡Bienvenido al Ping Pong!</h2>
+                <p>Primer jugador en llegar a 5 puntos gana.</p>
+                <div class="keys">
+                    <p><strong>Controles:</strong></p>
+                    <p>Jugador 1: W/S · Jugador 2: ↑/↓</p>
+                    <p>Espacio: Pausar · R: Reiniciar</p>
+                </div>
+                <button class="start-button" onclick="startGame()">COMENZAR JUEGO</button>
+            </div>
+
+            <div class="game-over" id="gameOver">
+                <h2 id="winnerText">¡Jugador 1 Gana!</h2>
+                <p>Presiona R para jugar de nuevo</p>
+            </div>
         </div>
-        <button class="start-button" onclick="startGame()">COMENZAR JUEGO</button>
-    </div>
-    
-    <canvas id="c"></canvas>
-    
-    <div class="ui">
-        <span id="scoreLeft">0</span> - <span id="scoreRight">0</span>
-    </div>
-    
-    <div class="controls">
-        Jugador 1: W/S &nbsp;&nbsp;&nbsp; Jugador 2: ↑/↓ &nbsp;&nbsp;&nbsp; Espacio: Pausar &nbsp;&nbsp;&nbsp; R: Reiniciar
-    </div>
-    
-    <div class="game-over" id="gameOver">
-        <h2 id="winnerText">¡Jugador 1 Gana!</h2>
-        <p>Presiona R para jugar de nuevo</p>
+
+        <p class="hint controls">Jugador 1: W/S · Jugador 2: ↑/↓ · Espacio: Pausar · R: Reiniciar</p>
+
+        <p class="meta">Autor: Fernando Brandan</p>
     </div>
 
     <script src="script.js"></script>
