@@ -11,16 +11,26 @@
     <div class="game">
         <header class="top">
             <a class="back" href="../../index.html">← Arcade Nova</a>
-            <h1>👾 Pac-Man — Arcade Nova</h1>
+            <h1>👾 Pac-Man</h1>
             <div class="scores">
                 <div class="score-box score">Puntos<strong id="score">0</strong></div>
                 <div class="score-box lives">Vidas<strong id="lives">3</strong></div>
             </div>
         </header>
 
-        <div id="gameBoard" class="board"></div>
+        <div class="board-wrap">
+            <div id="gameBoard" class="board"></div>
 
-        <p class="hint">Usa las flechas para mover a Pac-Man</p>
+            <div class="overlay" id="overlay" hidden>
+                <div class="overlay-card">
+                    <h2 id="overlay-title">¡Juego terminado!</h2>
+                    <p id="overlay-text"></p>
+                    <button id="overlay-btn">Jugar otra vez</button>
+                </div>
+            </div>
+        </div>
+
+        <p class="hint">Flechas o desliza el dedo sobre el laberinto · Come todos los puntos</p>
         <button id="startBtn" class="btn" onclick="startGame()">INICIAR JUEGO</button>
 
         <p class="meta">Autor: <a href="https://github.com/alberto2005-coder" target="_blank" rel="noopener noreferrer">Alberto Ortiz</a></p>

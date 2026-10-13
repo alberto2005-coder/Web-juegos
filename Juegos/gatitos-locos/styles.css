@@ -55,6 +55,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 0.7rem;
   padding: 0.5rem 0.8rem;
   background: rgba(13, 18, 38, 0.72);
