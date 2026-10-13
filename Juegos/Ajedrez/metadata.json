@@ -1,10 +1,10 @@
 {
   "id": "1",
   "nombre": "Ajedrez",
-  "descripcion": "Juego de Ajedrez",
+  "descripcion": "El juego de tablero por excelencia: enfréntate a la IA o a un amigo en el mismo dispositivo.",
   "url": "./Juegos/Ajedrez/index.html",
   "categoria": "Lógica",
-  "tags": ["Oneplayer", "Old", "Two players", "Contra IA"],
+  "tags": ["oneplayer", "twoplayers", "contra-ia", "logica", "old"],
   "miniatura": "./Juegos/Ajedrez/logo.png",
   "autor": "Alberto Ortiz",
   "github": "https://github.com/alberto2005-coder"
