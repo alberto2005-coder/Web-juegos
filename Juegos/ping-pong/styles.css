@@ -132,6 +132,8 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   width: min(440px, 92%);
+  max-height: 100%; /* nunca se sale del canvas ni tapa los marcadores */
+  overflow-y: auto;
   background: rgba(13, 18, 38, 0.92);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -233,6 +235,20 @@ canvas {
   .back { font-size: 0.82rem; padding: 0.5rem 0.8rem; }
   .start-screen,
   .game-over { padding: 1.2rem 1.1rem; }
+}
+
+/* Pantallas compactas: el canvas 800×400 es bajo, así que la tarjeta
+   de inicio debe caber dentro de él en pantallas estrechas */
+@media (max-width: 640px) {
+  .start-screen,
+  .game-over { padding: 0.7rem 0.9rem; }
+  .start-screen h2,
+  .game-over h2 { font-size: 1.1rem; margin-bottom: 0.25rem; }
+  .start-screen > p,
+  .game-over p { font-size: 0.78rem; margin: 0.15rem 0; }
+  .start-screen .keys { margin-top: 0.5rem; font-size: 0.72rem; }
+  .start-screen .keys p:first-child { display: none; } /* «Controles:» ocupa espacio */
+  .start-screen .start-button { margin-top: 0.55rem; padding: 0.55rem 1.2rem; font-size: 0.85rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
