@@ -207,3 +207,51 @@ La [Licencia MIT](./LICENSE) obliga a conservar el aviso de copyright y el texto
 - La marca *Pokémon* y sus recursos son propiedad de Nintendo / Creatures Inc. / GAME FREAK inc.; `pokemon-puzzle` se distribuye con fines educativos y sin afiliación oficial.
 
 > ℹ️ Este proyecto **no está afiliado ni respaldado** por NekeritDevs ni por ningún tercero mencionado.
+
+
+---
+
+# English Version
+
+A modern chess game for the web, built with **HTML, CSS and JavaScript**. Interactive UI, smooth animations and a rotatable board perspective.
+
+**Play it live:** https://alberto2005-coder.github.io/Ajedrez/
+
+## Description
+
+This chess game provides:
+
+* Brown and white board with no wood texture.
+* Smooth piece-move animations.
+* Move and capture highlighting.
+* White or black board perspective.
+* Side bar with game controls.
+
+It runs directly from the browser or as a desktop app with no complex setup.
+
+## Requirements
+
+* Operating system: Windows, macOS or Linux.
+* Modern browser (Chrome, Edge, Firefox, Safari) for the web version.
+* For the desktop version: JDK 17+ (if Java) or the included executable.
+
+## How to Play
+
+1. Open `index.html` in a compatible browser, or run the included application.
+2. Select the piece perspective from the side bar.
+3. Click a piece to see its possible moves.
+4. Move by clicking the destination square.
+5. Captures and moves are highlighted automatically.
+
+## Controls
+
+| Control | Action |
+|---|---|
+| Click on a piece | Select it to see possible moves |
+| Click on a valid square | Move the selected piece |
+| Side bar | Change perspective, restart, show/hide moves |
+
+## License
+
+Distributed under the **MIT License**. You can use, modify and distribute it freely, including for commercial purposes, as long as you respect the license.
+
