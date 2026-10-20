@@ -207,3 +207,170 @@ La [Licencia MIT](./LICENSE) obliga a conservar el aviso de copyright y el texto
 - La marca *Pokémon* y sus recursos son propiedad de Nintendo / Creatures Inc. / GAME FREAK inc.; `pokemon-puzzle` se distribuye con fines educativos y sin afiliación oficial.
 
 > ℹ️ Este proyecto **no está afiliado ni respaldado** por NekeritDevs ni por ningún tercero mencionado.
+
+
+---
+
+# English Version
+
+**Arcade Nova** — a dynamic, scalable web gallery of browser minigames. Built with a modular frontend architecture (HTML5/CSS3/vanilla JS) that automatically renders game cards from JSON metadata files.
+
+**Play it live:** https://alberto2005-coder.github.io/Web-juegos/
+
+## ✨ Features
+
+- **Dynamic catalogue**: games load automatically from their `metadata.json` files.
+- **Search and filters** by name, author and tag in real time.
+- **Modern responsive design**: glassmorphism cards, fluid grid and fixed blurred header.
+- **Light / dark mode** persisted in `localStorage`.
+- **No dependencies or build step**: served as static files (ideal for GitHub Pages).
+- **Accessible**: ARIA labels, `prefers-reduced-motion` and lazy image loading.
+
+## 📂 Project Structure
+
+```text
+Web-juegos/
+│
+├─ Juegos/
+│  ├─ Game-Name/
+│  │  ├─ metadata.json     <- source of truth for the game
+│  │  ├─ index.html
+│  │  ├─ styles.css (or style.css)
+│  │  ├─ script.js (or main.js / game.js)
+│  │  └─ logo.png
+│  └─ ...
+│
+├─ index.html      <- main page (gallery shell)
+├─ main.js         <- loads metadata, filters and theme
+├─ styles.css      <- full design (light/dark, cards, footer, responsive)
+├─ logo.svg        <- vector logo
+├─ logo.png        <- raster logo (favicon and compatibility)
+├─ LICENSE         <- MIT License
+└─ README.md       <- this file
+```
+
+`Juegos/` — one directory per game, each with its own `metadata.json`.
+`index.html` — gallery structure and filtering.
+`main.js` — reads the route list, generates cards and applies filters.
+`styles.css` — theme variables (light/dark), cards, footer and responsive rules.
+
+## 🚀 Run it locally
+
+`main.js` uses `fetch()`, so the project does **not** work by double-clicking `index.html` (`file://`). Use any of these options:
+
+| Option | Command |
+|---|---|
+| VS Code + Live Server | right-click `index.html` -> Open with Live Server |
+| Python | `python -m http.server 8000` |
+| Node | `npx serve .` |
+
+Then open `http://localhost:8000`.
+
+To publish it, upload the repository to GitHub Pages (branch `main`, root folder). Image paths are normalized automatically in `main.js` for case-sensitive servers.
+
+## 🎮 Add a new game
+
+1. Create a folder inside `Juegos/` with the game's name.
+2. Copy the game files into it (`index.html`, styles, scripts, images).
+3. Create the `metadata.json` (format below).
+4. Add the route to the `rutas` array in `main.js`:
+
+```js
+const rutas = [
+  "Juegos/Ajedrez/metadata.json",
+  "Juegos/3-en-raya/metadata.json",
+  // ...
+  "Juegos/MyNewGame/metadata.json", // <- new route
+];
+```
+
+5. Reload the page: the card appears automatically.
+
+## 📝 metadata.json format
+
+```json
+{
+  "nombre": "Game Name",
+  "descripcion": "Brief description of the game",
+  "categoria": "Game category",
+  "autor": "Author name (optional)",
+  "github": "https://github.com/user (optional)",
+  "miniatura": "Juegos/Game-Name/logo.png",
+  "url": "Juegos/Game-Name/index.html",
+  "tags": ["arcade", "puzzle", "single-player"]
+}
+```
+
+| Field | Required | Description |
+|---|---|---|
+| `nombre` | ✅ | Name shown on the card. |
+| `descripcion` | ✅ | Short description (3 lines are shown). |
+| `categoria` | ✅ | e.g. Strategy, Arcade, Puzzle. |
+| `autor` | ⬜ | Game author. |
+| `github` | ⬜ | Author's repo link (shown next to the name). |
+| `miniatura` | ✅ | Card image (recommended ~600×400). |
+| `url` | ✅ | Path to the game's `index.html`. |
+| `tags` | ⬜ | Array of tags, coloured automatically. |
+
+⚠️ Use relative paths as-is (`Juegos/...`), respecting case.
+
+## 🎨 Customization
+
+Theme and colours live in the CSS variables in `styles.css`:
+
+```css
+:root { /* dark theme */ --accent: #7c3aed; --accent-2: #22d3ee; /* ... */ }
+[data-theme="light"] { /* light theme */ }
+```
+
+Tag colours are assigned in order by the `coloresTags` array in `main.js`:
+
+```js
+const coloresTags = ['#FFB6B6', '#4ECDC4', '#45B7D1', /* ... */];
+```
+
+Grid: `grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));`
+
+## 🧰 Technologies
+
+- Semantic HTML5
+- CSS3 (custom properties, grid, backdrop-filter, animations, media queries)
+- JavaScript ES6+ (async/await, fetch, logical modules)
+- Font Awesome 6 and Inter via CDN
+
+## ⚠️ Notes
+
+- Each game must have its own `metadata.json`.
+- Data loads in parallel with the route list; a missing route only logs an error without breaking the gallery.
+- All text injected from `metadata.json` is escaped before rendering (XSS protection).
+- If a game does not appear, check that `miniatura` and `url` point to real paths.
+
+## 🔗 Credits and License
+
+Original project: [NekeritDevs/Web-juegos](https://github.com/NekeritDevs/Web-juegos)
+Copyright (c) 2025 NekeritStudio
+License: MIT
+
+**Arcade Nova** is a derivation of the "Web Juegos" project by NekeritDevs (previously published as a fork of the original repository). The name, visual identity, design and documentation have been renewed, but the entire code base comes from that project and is distributed under the same license.
+
+The MIT License requires keeping the copyright notice and permission text in all copies or substantial parts of the software. That is why this repository keeps:
+
+- `LICENSE` — the full MIT License text with the original NekeritStudio copyright, unmodified.
+- This section in the main README, with a link to the upstream repository.
+- Visible attribution in the web footer (code-branch icon), linking to the original repository and its license.
+
+### What you can do under the MIT License
+
+| Allowed | Condition |
+|---|---|
+| Use, copy, modify | Keep the copyright notice and the MIT License |
+| Merge, publish, sublicense, sell | Include the same notice in copies and substantial parts |
+
+### Acknowledgements
+
+- **NekeritStudio** — original authors of Web Juegos and of the gallery structure.
+- Authors of the included games: Alberto Ortiz, Dorado Rodriguez, Marcelo Ecuador, Fernando Brandan, Jairo Delgado, Hevieri and collaborators.
+- The Pokémon brand and its assets are property of Nintendo / Creatures Inc. / GAME FREAK inc.; `pokemon-puzzle` is distributed for educational purposes with no official affiliation.
+
+ℹ️ This project is not affiliated with or endorsed by NekeritDevs or any other third party mentioned.
+
