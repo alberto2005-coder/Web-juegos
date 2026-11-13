@@ -1,101 +1,105 @@
-<p align="center">
-  <img src="logo.svg" alt="Logo de Arcade Nova" width="120">
-</p>
+# Arcade Nova
 
-<h1 align="center">🕹️ Arcade Nova</h1>
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
+[![MIT](https://img.shields.io/badge/Licencia-MIT-green)](LICENSE)
 
-<p align="center">
-  <strong>Galería de juegos web para jugar directamente desde el navegador.</strong><br>
-  Sin descargas, sin instalaciones: HTML5 + CSS3 + JavaScript puro.
-</p>
-
-<p align="center">
-  <a href="#-cómo-ejecutarlo-localemente">Ejecutar</a> ·
-  <a href="#-añadir-un-juego">Añadir juegos</a> ·
-  <a href="#-formato-de-metadatos">Metadata</a> ·
-  <a href="#-créditos-y-licencia">Créditos</a>
-</p>
+[Español](#español) · [English](#english)
 
 ---
 
-## ✨ Características
+## Español
 
-- **Catálogo dinámico**: los juegos se cargan automáticamente desde sus `metadata.json`.
-- **Búsqueda y filtros** por nombre, autor y tag en tiempo real.
-- **Diseño moderno y responsive**: tarjetas glassmorphism, rejilla fluida y header fijo con desenfoque.
-- **Modo claro / oscuro** persistido en `localStorage`.
-- **Sin dependencias ni build**: se sirve como archivos estáticos (ideal para GitHub Pages).
-- **Accesible**: etiquetas ARIA, `prefers-reduced-motion` y carga diferida de imágenes.
+### Índice
 
----
+- [Descripción](#descripción)
+- [Demo](#demo)
+- [Características](#características)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Ejecución local](#ejecución-local)
+- [Añadir un juego](#añadir-un-juego)
+- [Formato de metadata.json](#formato-de-metadatajson)
+- [Personalización](#personalización)
+- [Tecnologías](#tecnologías)
+- [Notas](#notas)
+- [Créditos y licencia](#créditos-y-licencia)
+- [Licencia](#licencia)
 
-## 📂 Estructura del proyecto
+### Descripción
 
-```
+**Arcade Nova** es una galería web de **18 minijuegos** que se ejecutan directamente en el navegador, sin descargas ni instalaciones. La página se construye sola: lee el `metadata.json` de cada juego, genera las tarjetas y ofrece búsqueda y filtros en tiempo real. Todo es HTML5, CSS3 y JavaScript puro, sin build ni dependencias.
+
+### Demo
+
+**Juega ahora:** <https://alberto2005-coder.github.io/Web-juegos/>
+
+### Características
+
+- **Catálogo dinámico**: los juegos se cargan desde sus archivos `metadata.json`.
+- **Búsqueda y filtros** por nombre, autor y etiqueta al escribir.
+- **Diseño responsive** con tarjetas glassmorphism, rejilla fluida y cabecera fija con desenfoque.
+- **Modo claro/oscuro** persistido en `localStorage`.
+- **Sin dependencias ni compilación**: se sirve como archivos estáticos, ideal para GitHub Pages.
+- **Accesible**: etiquetas ARIA, respeto por `prefers-reduced-motion` y carga diferida de imágenes.
+- **Protección XSS**: todo el texto de `metadata.json` se escapa antes de insertarse en el DOM.
+
+Juegos incluidos: 2048, 3 en raya, Ajedrez, Memory, Tetris, Ahorcado, Breakout, Buscaminas, Conecta 4, Damas, Flappy Nova, Gatitos Locos, Pac-Man, Ping Pong, Pokémon Puzzle, Simon, Snake y Space Invaders.
+
+### Estructura del proyecto
+
+```text
 Web-juegos/
-│
-├─ Juegos/
-│  ├─ Nombre-del-juego/
-│  │  ├─ metadata.json     ← fuente de verdad del juego
-│  │  ├─ index.html
-│  │  ├─ styles.css (o style.css)
-│  │  ├─ script.js (o main.js / game.js)
-│  │  └─ logo.png
-│  └─ ...
-│
-├─ index.html      ← página principal (shell de la galería)
-├─ main.js         ← carga de metadata, filtros y tema
-├─ styles.css      ← diseño completo de la galería
-├─ logo.svg        ← logo vectorial
-├─ logo.png        ← logo raster (favicon y compatibilidad)
-├─ LICENSE         ← Licencia MIT (texto original, sin modificar)
-└─ README.md       ← este archivo
+├── Juegos/
+│   ├── Nombre-del-juego/
+│   │   ├── metadata.json     # Fuente de verdad del juego
+│   │   ├── index.html
+│   │   ├── styles.css        # o style.css
+│   │   ├── script.js         # o main.js / game.js
+│   │   └── logo.png
+│   └── ...
+├── index.html      # Shell de la galería
+├── main.js         # Carga de metadatos, filtros y tema
+├── styles.css      # Diseño de la galería
+├── logo.svg        # Logotipo vectorial
+├── logo.png        # Logotipo raster (favicon)
+├── LICENSE         # MIT, copyright original de NekeritStudio
+└── README.md
 ```
 
-- **Juegos/** — un directorio por juego, cada uno con su `metadata.json`.
-- **index.html** — estructura de la galería y filtrado.
-- **main.js** — lee la lista `rutas`, genera las tarjetas y aplica los filtros.
-- **styles.css** — variables de tema (claro/oscuro), tarjetas, footer y responsive.
+### Ejecución local
 
----
-
-## 🚀 Cómo ejecutarlo localmente
-
-`main.js` usa `fetch()`, así que el proyecto **no funciona abriendo `index.html` con doble clic** (`file://`). Usá cualquiera de estas opciones:
+`main.js` usa `fetch()`, así que **abrir `index.html` con doble clic no funciona** (`file://`). Usa un servidor estático:
 
 | Opción | Comando |
-| --- | --- |
-| **VS Code + Live Server** | clic derecho en `index.html` → *Open with Live Server* |
-| **Python** | `python -m http.server 8000` |
-| **Node** | `npx serve .` |
+|---|---|
+| VS Code + Live Server | Clic derecho en `index.html` → *Open with Live Server* |
+| Python | `python -m http.server 8000` |
+| Node | `npx serve .` |
 
-Luego abrí <http://localhost:8000>.
+Después abre <http://localhost:8000>.
 
-Para publicarlo, subí el repositorio a **GitHub Pages** (rama `main`, carpeta `/root`). Las rutas de imágenes se normalizan automáticamente en `main.js` para servidores sensibles a mayúsculas.
+Para publicarlo, sube el repositorio a **GitHub Pages** (rama `main`, carpeta raíz). `main.js` normaliza las rutas de imágenes para servidores sensibles a mayúsculas.
 
----
+### Añadir un juego
 
-## 🎮 Añadir un nuevo juego
-
-1. Creá una carpeta dentro de `Juegos/` con el nombre del juego.
-2. Copiá dentro los archivos del juego (`index.html`, estilos, scripts, imágenes).
-3. Creá el `metadata.json` (formato abajo).
-4. Agregá la ruta al array `rutas` en `main.js`:
+1. Crea una carpeta dentro de `Juegos/` con el nombre del juego.
+2. Copia dentro sus archivos (`index.html`, estilos, scripts, imágenes).
+3. Crea el `metadata.json` con el formato de abajo.
+4. Añade la ruta al array `rutas` de `main.js`:
 
 ```javascript
 const rutas = [
   "Juegos/Ajedrez/metadata.json",
   "Juegos/3-en-raya/metadata.json",
   // ...
-  "Juegos/MiNuevoJuego/metadata.json", // ← nueva ruta
+  "Juegos/MiNuevoJuego/metadata.json", // nueva ruta
 ];
 ```
 
-5. Recargá la página: la tarjeta aparece sola.
+5. Recarga la página: la tarjeta aparece sola.
 
----
-
-## 📝 Formato de `metadata.json`
+### Formato de metadata.json
 
 ```json
 {
@@ -111,187 +115,173 @@ const rutas = [
 ```
 
 | Campo | Obligatorio | Descripción |
-| --- | --- | --- |
-| `nombre` | ✅ | Nombre visible en la tarjeta. |
-| `descripcion` | ✅ | Descripción corta (se muestran 3 líneas). |
-| `categoria` | ✅ | Ej.: *Estrategia*, *Arcade*, *Puzzle*. |
-| `autor` | ⬜ | Autor del juego. |
-| `github` | ⬜ | Enlace al repo del autor (se muestra como enlace junto al nombre). |
-| `miniatura` | ✅ | Imagen de la tarjeta (recomendado ~600×400). |
-| `url` | ✅ | Ruta al `index.html` del juego. |
-| `tags` | ⬜ | Array de etiquetas, coloreadas automáticamente. |
+|---|---|---|
+| `nombre` | Sí | Nombre visible en la tarjeta |
+| `descripcion` | Sí | Descripción corta (se muestran 3 líneas) |
+| `categoria` | Sí | Por ejemplo *Estrategia*, *Arcade* o *Puzzle* |
+| `autor` | No | Autor del juego |
+| `github` | No | Enlace al repositorio del autor |
+| `miniatura` | Sí | Imagen de la tarjeta (~600×400 recomendado) |
+| `url` | Sí | Ruta al `index.html` del juego |
+| `tags` | No | Etiquetas, coloreadas automáticamente |
 
-> ⚠️ Usá rutas relativas tal cual (`Juegos/...`), respetando mayúsculas/minúsculas.
+> [!IMPORTANT]
+> Usa rutas relativas tal cual (`Juegos/...`) y respeta mayúsculas y minúsculas: en GitHub Pages las rutas distinguen entre `Logo.png` y `logo.png`.
 
----
+### Personalización
 
-## 🎨 Personalización
-
-### Tema y colores
-Todo el sistema de colores vive en las variables CSS de `styles.css`:
+**Tema y colores** — en `styles.css`:
 
 ```css
-:root { /* tema oscuro */ --accent: #7c3aed; --accent-2: #22d3ee; /* ... */ }
+:root { /* tema oscuro */ --accent: #7c3aed; --accent-2: #22d3ee; }
 [data-theme="light"] { /* tema claro */ }
 ```
 
-### Colores de los tags
-El array `coloresTags` de `main.js` asigna un color a cada tag en orden:
+**Colores de etiquetas** — en `main.js`, el array `coloresTags` asigna un color a cada etiqueta en orden:
 
 ```javascript
-const coloresTags = ['#FF6B6B', '#4ECDC4', '#45B7D1', /* ... */];
+const coloresTags = ['#FF6B6B', '#4ECDC4', '#45B7D1'];
 ```
 
-### Rejilla
-```css
-grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
-```
+**Rejilla** — `grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));`
 
----
+### Tecnologías
 
-## 🧰 Tecnologías
+- HTML5 semántico.
+- CSS3: custom properties, grid, `backdrop-filter`, animaciones y media queries.
+- JavaScript ES6+: `async/await`, `fetch` y módulos lógicos.
+- [Font Awesome 6](https://fontawesome.com) e [Inter](https://fonts.google.com/specimen/Inter) vía CDN.
 
-- HTML5 semántico
-- CSS3 (custom properties, grid, `backdrop-filter`, animaciones, media queries)
-- JavaScript ES6+ (async/await, `fetch`, módulos lógicos)
-- [Font Awesome 6](https://fontawesome.com) e [Inter](https://fonts.google.com/specimen/Inter) vía CDN
+### Notas
 
----
+- Cada juego necesita su propio `metadata.json`.
+- Los metadatos se cargan en paralelo; una ruta inexistente solo deja un error en consola y no rompe la galería.
+- Si un juego no aparece, revisa que `miniatura` y `url` apunten a archivos reales.
+- La galería no incluye backend: no hay puntuaciones, cuentas ni guardado en servidor.
 
-## ⚠️ Notas
+Cada tarjeta muestra la miniatura, el nombre, la descripción, la categoría, el autor (con enlace a GitHub si existe), las etiquetas y un botón **Jugar**.
 
-- Cada juego debe tener su propio `metadata.json`.
-- Los datos se cargan en paralelo a la lista `rutas`; una ruta inexistente solo genera un error en consola, sin romper la galería.
-- Todos los textos inyectados desde `metadata.json` se escapan antes de renderizarse (proyección contra XSS).
-- Si un juego no aparece, revisá que `miniatura` y `url` apunten a rutas reales.
-
----
-
-## 🖥️ Vista previa
-
-Cada tarjeta muestra:
-
-- Miniatura del juego
-- Nombre y descripción
-- Categoría y autor (con enlace a GitHub si existe)
-- Tags con colores
-- Botón **Jugar** que abre el juego
-
----
-
-## 🔍 Créditos y licencia
+### Créditos y licencia
 
 > **Proyecto original:** [`NekeritDevs/Web-juegos`](https://github.com/NekeritDevs/Web-juegos)
 > **Copyright (c) 2025 NekeritStudio**
-> **Licencia:** [MIT](./LICENSE)
+> **Licencia:** [MIT](LICENSE)
 
-Arcade Nova es una **derivación del proyecto «Web Juegos» de NekeritDevs** (antes publicado como fork del repositorio original). El nombre, la identidad visual, el diseño y la documentación han sido renovados, pero **todo el código base procede de dicho proyecto** y se distribuye bajo su misma licencia.
+Arcade Nova es una **derivación de «Web Juegos» de NekeritDevs**. El nombre, la identidad visual, el diseño y la documentación se han renovado, pero **todo el código base procede de ese proyecto** y se distribuye bajo su misma licencia.
 
-La [Licencia MIT](./LICENSE) obliga a conservar el aviso de copyright y el texto de permiso en **todas las copias o partes sustanciales** del software. Por eso este repositorio mantiene:
+La licencia MIT obliga a conservar el aviso de copyright y el texto de permiso en todas las copias o partes sustanciales. Por eso el repositorio mantiene:
 
-1. **`LICENSE`** — texto íntegro de la Licencia MIT con el copyright original de NekeritStudio, **sin modificar**.
-2. **Este apartado** en el README principal, con enlace al repositorio upstream.
-3. **La atribución visible en el footer** de la web (icono *code-branch*), que enlaza al repositorio original y a su licencia.
+1. **`LICENSE`** con el texto íntegro de MIT y el copyright original de NekeritStudio, sin modificar.
+2. **Este apartado** con enlace al repositorio upstream.
+3. **La atribución en el footer** de la web, que enlaza al proyecto original y a su licencia.
 
-### ¿Qué podés hacer con la licencia MIT?
+**Agradecimientos**: NekeritStudio (autores originales de la galería) y los autores de los juegos incluidos: Alberto Ortiz, Dorado Rodriguez, Marcelo Ecuador, Fernando Brandan, Jairo Delgado, Hevieri y colaboradores.
 
-| Permitido | Condición |
-| --- | --- |
-| Usar, copiar, modificar | Conservar el aviso de copyright y la licencia MIT |
-| Fusionar, publicar, sublicenciar, vender | Incluir el mismo aviso en copias y partes sustanciales |
+> [!NOTE]
+> La marca *Pokémon* y sus recursos pertenecen a Nintendo / Creatures Inc. / GAME FREAK inc. `pokemon-puzzle` se distribuye con fines educativos y sin afiliación oficial. Este proyecto no está afiliado ni respaldado por NekeritDevs ni por ningún otro tercero mencionado.
 
-### Agradecimientos
+### Licencia
 
-- **[NekeritStudio](https://github.com/NekeritDevs)** — autores originales de *Web Juegos* y de la estructura de la galería.
-- Autores de los juegos incluidos: Alberto Ortiz, Dorado Rodriguez, Marcelo Ecuador, Fernando Brandan, Jairo Delgado, Hevieri y colaboradores.
-- La marca *Pokémon* y sus recursos son propiedad de Nintendo / Creatures Inc. / GAME FREAK inc.; `pokemon-puzzle` se distribuye con fines educativos y sin afiliación oficial.
-
-> ℹ️ Este proyecto **no está afiliado ni respaldado** por NekeritDevs ni por ningún tercero mencionado.
-
+**MIT** — consulta [LICENSE](LICENSE). El copyright original de **NekeritStudio** debe conservarse en las copias y versiones derivadas.
 
 ---
 
-# English Version
+## English
 
-**Arcade Nova** — a dynamic, scalable web gallery of browser minigames. Built with a modular frontend architecture (HTML5/CSS3/vanilla JS) that automatically renders game cards from JSON metadata files.
+### Table of contents
 
-**Play it live:** https://alberto2005-coder.github.io/Web-juegos/
+- [Overview](#overview)
+- [Demo](#demo)
+- [Features](#features)
+- [Project structure](#project-structure)
+- [Running locally](#running-locally)
+- [Adding a game](#adding-a-game)
+- [metadata.json format](#metadatajson-format)
+- [Customisation](#customisation)
+- [Technologies](#technologies)
+- [Notes](#notes)
+- [Credits and license](#credits-and-license)
+- [License](#license)
 
-## ✨ Features
+### Overview
 
-- **Dynamic catalogue**: games load automatically from their `metadata.json` files.
-- **Search and filters** by name, author and tag in real time.
-- **Modern responsive design**: glassmorphism cards, fluid grid and fixed blurred header.
-- **Light / dark mode** persisted in `localStorage`.
-- **No dependencies or build step**: served as static files (ideal for GitHub Pages).
-- **Accessible**: ARIA labels, `prefers-reduced-motion` and lazy image loading.
+**Arcade Nova** is a web gallery of **18 browser minigames** that run with no downloads or installs. The page builds itself: it reads each game's `metadata.json`, renders the cards and provides live search and filters. Everything is plain HTML5, CSS3 and JavaScript, with no build step and no dependencies.
 
-## 📂 Project Structure
+### Demo
+
+**Play now:** <https://alberto2005-coder.github.io/Web-juegos/>
+
+### Features
+
+- **Dynamic catalogue**: games load from their `metadata.json` files.
+- **Search and filters** by name, author and tag as you type.
+- **Responsive design** with glassmorphism cards, a fluid grid and a fixed blurred header.
+- **Light/dark mode** persisted in `localStorage`.
+- **No dependencies or build**: served as static files, ideal for GitHub Pages.
+- **Accessible**: ARIA labels, `prefers-reduced-motion` support and lazy image loading.
+- **XSS protection**: all `metadata.json` text is escaped before being inserted into the DOM.
+
+Included games: 2048, Tic-tac-toe, Chess, Memory, Tetris, Hangman, Breakout, Minesweeper, Connect 4, Checkers, Flappy Nova, Crazy Cats, Pac-Man, Ping Pong, Pokémon Puzzle, Simon, Snake and Space Invaders.
+
+### Project structure
 
 ```text
 Web-juegos/
-│
-├─ Juegos/
-│  ├─ Game-Name/
-│  │  ├─ metadata.json     <- source of truth for the game
-│  │  ├─ index.html
-│  │  ├─ styles.css (or style.css)
-│  │  ├─ script.js (or main.js / game.js)
-│  │  └─ logo.png
-│  └─ ...
-│
-├─ index.html      <- main page (gallery shell)
-├─ main.js         <- loads metadata, filters and theme
-├─ styles.css      <- full design (light/dark, cards, footer, responsive)
-├─ logo.svg        <- vector logo
-├─ logo.png        <- raster logo (favicon and compatibility)
-├─ LICENSE         <- MIT License
-└─ README.md       <- this file
+├── Juegos/
+│   ├── Game-Name/
+│   │   ├── metadata.json     # Source of truth for the game
+│   │   ├── index.html
+│   │   ├── styles.css        # or style.css
+│   │   ├── script.js         # or main.js / game.js
+│   │   └── logo.png
+│   └── ...
+├── index.html      # Gallery shell
+├── main.js         # Metadata loading, filters and theme
+├── styles.css      # Gallery design
+├── logo.svg        # Vector logo
+├── logo.png        # Raster logo (favicon)
+├── LICENSE         # MIT, original NekeritStudio copyright
+└── README.md
 ```
 
-`Juegos/` — one directory per game, each with its own `metadata.json`.
-`index.html` — gallery structure and filtering.
-`main.js` — reads the route list, generates cards and applies filters.
-`styles.css` — theme variables (light/dark), cards, footer and responsive rules.
+### Running locally
 
-## 🚀 Run it locally
-
-`main.js` uses `fetch()`, so the project does **not** work by double-clicking `index.html` (`file://`). Use any of these options:
+`main.js` uses `fetch()`, so **double-clicking `index.html` will not work** (`file://`). Use a static server:
 
 | Option | Command |
 |---|---|
-| VS Code + Live Server | right-click `index.html` -> Open with Live Server |
+| VS Code + Live Server | Right-click `index.html` → *Open with Live Server* |
 | Python | `python -m http.server 8000` |
 | Node | `npx serve .` |
 
-Then open `http://localhost:8000`.
+Then open <http://localhost:8000>.
 
-To publish it, upload the repository to GitHub Pages (branch `main`, root folder). Image paths are normalized automatically in `main.js` for case-sensitive servers.
+To publish it, push the repository to **GitHub Pages** (branch `main`, root folder). `main.js` normalises image paths for case-sensitive servers.
 
-## 🎮 Add a new game
+### Adding a game
 
-1. Create a folder inside `Juegos/` with the game's name.
-2. Copy the game files into it (`index.html`, styles, scripts, images).
-3. Create the `metadata.json` (format below).
+1. Create a folder inside `Juegos/` named after the game.
+2. Copy its files in (`index.html`, styles, scripts, images).
+3. Create the `metadata.json` using the format below.
 4. Add the route to the `rutas` array in `main.js`:
 
-```js
+```javascript
 const rutas = [
   "Juegos/Ajedrez/metadata.json",
   "Juegos/3-en-raya/metadata.json",
   // ...
-  "Juegos/MyNewGame/metadata.json", // <- new route
+  "Juegos/MyNewGame/metadata.json", // new route
 ];
 ```
 
-5. Reload the page: the card appears automatically.
+5. Reload the page: the card appears on its own.
 
-## 📝 metadata.json format
+### metadata.json format
 
 ```json
 {
-  "nombre": "Game Name",
-  "descripcion": "Brief description of the game",
+  "nombre": "Game name",
+  "descripcion": "Short game description",
   "categoria": "Game category",
   "autor": "Author name (optional)",
   "github": "https://github.com/user (optional)",
@@ -303,74 +293,70 @@ const rutas = [
 
 | Field | Required | Description |
 |---|---|---|
-| `nombre` | ✅ | Name shown on the card. |
-| `descripcion` | ✅ | Short description (3 lines are shown). |
-| `categoria` | ✅ | e.g. Strategy, Arcade, Puzzle. |
-| `autor` | ⬜ | Game author. |
-| `github` | ⬜ | Author's repo link (shown next to the name). |
-| `miniatura` | ✅ | Card image (recommended ~600×400). |
-| `url` | ✅ | Path to the game's `index.html`. |
-| `tags` | ⬜ | Array of tags, coloured automatically. |
+| `nombre` | Yes | Name shown on the card |
+| `descripcion` | Yes | Short description (3 lines are shown) |
+| `categoria` | Yes | For example *Strategy*, *Arcade* or *Puzzle* |
+| `autor` | No | Game author |
+| `github` | No | Link to the author's repository |
+| `miniatura` | Yes | Card image (~600×400 recommended) |
+| `url` | Yes | Path to the game's `index.html` |
+| `tags` | No | Tags, coloured automatically |
 
-⚠️ Use relative paths as-is (`Juegos/...`), respecting case.
+> [!IMPORTANT]
+> Use relative paths exactly as written (`Juegos/...`) and mind the case: GitHub Pages is case-sensitive, so `Logo.png` and `logo.png` are different files.
 
-## 🎨 Customization
+### Customisation
 
-Theme and colours live in the CSS variables in `styles.css`:
+**Theme and colours** — in `styles.css`:
 
 ```css
-:root { /* dark theme */ --accent: #7c3aed; --accent-2: #22d3ee; /* ... */ }
+:root { /* dark theme */ --accent: #7c3aed; --accent-2: #22d3ee; }
 [data-theme="light"] { /* light theme */ }
 ```
 
-Tag colours are assigned in order by the `coloresTags` array in `main.js`:
+**Tag colours** — in `main.js`, the `coloresTags` array assigns colours in order:
 
-```js
-const coloresTags = ['#FFB6B6', '#4ECDC4', '#45B7D1', /* ... */];
+```javascript
+const coloresTags = ['#FF6B6B', '#4ECDC4', '#45B7D1'];
 ```
 
-Grid: `grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));`
+**Grid** — `grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));`
 
-## 🧰 Technologies
+### Technologies
 
-- Semantic HTML5
-- CSS3 (custom properties, grid, backdrop-filter, animations, media queries)
-- JavaScript ES6+ (async/await, fetch, logical modules)
-- Font Awesome 6 and Inter via CDN
+- Semantic HTML5.
+- CSS3: custom properties, grid, `backdrop-filter`, animations and media queries.
+- JavaScript ES6+: `async/await`, `fetch` and logical modules.
+- [Font Awesome 6](https://fontawesome.com) and [Inter](https://fonts.google.com/specimen/Inter) via CDN.
 
-## ⚠️ Notes
+### Notes
 
-- Each game must have its own `metadata.json`.
-- Data loads in parallel with the route list; a missing route only logs an error without breaking the gallery.
-- All text injected from `metadata.json` is escaped before rendering (XSS protection).
-- If a game does not appear, check that `miniatura` and `url` point to real paths.
+- Every game needs its own `metadata.json`.
+- Metadata loads in parallel; a missing route only logs a console error and does not break the gallery.
+- If a game does not show up, check that `miniatura` and `url` point at real files.
+- There is no backend: no scores, accounts or server-side storage.
 
-## 🔗 Credits and License
+Each card shows the thumbnail, name, description, category, author (linked to GitHub when present), tags and a **Play** button.
 
-Original project: [NekeritDevs/Web-juegos](https://github.com/NekeritDevs/Web-juegos)
-Copyright (c) 2025 NekeritStudio
-License: MIT
+### Credits and license
 
-**Arcade Nova** is a derivation of the "Web Juegos" project by NekeritDevs (previously published as a fork of the original repository). The name, visual identity, design and documentation have been renewed, but the entire code base comes from that project and is distributed under the same license.
+> **Original project:** [`NekeritDevs/Web-juegos`](https://github.com/NekeritDevs/Web-juegos)
+> **Copyright (c) 2025 NekeritStudio**
+> **License:** [MIT](LICENSE)
 
-The MIT License requires keeping the copyright notice and permission text in all copies or substantial parts of the software. That is why this repository keeps:
+Arcade Nova is a **derivation of "Web Juegos" by NekeritDevs**. The name, visual identity, design and documentation have been renewed, but **the entire codebase comes from that project** and is distributed under the same licence.
 
-- `LICENSE` — the full MIT License text with the original NekeritStudio copyright, unmodified.
-- This section in the main README, with a link to the upstream repository.
-- Visible attribution in the web footer (code-branch icon), linking to the original repository and its license.
+The MIT licence requires keeping the copyright notice and permission text in all copies or substantial parts. That is why the repository keeps:
 
-### What you can do under the MIT License
+1. **`LICENSE`** with the full MIT text and the original NekeritStudio copyright, unmodified.
+2. **This section** with a link to the upstream repository.
+3. **Attribution in the web footer**, linking to the original project and its licence.
 
-| Allowed | Condition |
-|---|---|
-| Use, copy, modify | Keep the copyright notice and the MIT License |
-| Merge, publish, sublicense, sell | Include the same notice in copies and substantial parts |
+**Acknowledgements**: NekeritStudio (original authors of the gallery) and the authors of the included games: Alberto Ortiz, Dorado Rodriguez, Marcelo Ecuador, Fernando Brandan, Jairo Delgado, Hevieri and collaborators.
 
-### Acknowledgements
+> [!NOTE]
+> The *Pokémon* brand and its assets belong to Nintendo / Creatures Inc. / GAME FREAK inc. `pokemon-puzzle` is distributed for educational purposes with no official affiliation. This project is not affiliated with or endorsed by NekeritDevs or any other third party mentioned.
 
-- **NekeritStudio** — original authors of Web Juegos and of the gallery structure.
-- Authors of the included games: Alberto Ortiz, Dorado Rodriguez, Marcelo Ecuador, Fernando Brandan, Jairo Delgado, Hevieri and collaborators.
-- The Pokémon brand and its assets are property of Nintendo / Creatures Inc. / GAME FREAK inc.; `pokemon-puzzle` is distributed for educational purposes with no official affiliation.
+### License
 
-ℹ️ This project is not affiliated with or endorsed by NekeritDevs or any other third party mentioned.
-
+**MIT** — see [LICENSE](LICENSE). The original **NekeritStudio** copyright must be preserved in copies and derivative versions.
