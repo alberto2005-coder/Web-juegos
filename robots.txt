@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://albertoortiz.is-a.dev/Web-juegos/sitemap.xml
