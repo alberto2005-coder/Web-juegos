@@ -32,7 +32,7 @@
 
 ### Demo
 
-**Juega ahora:** <https://alberto2005-coder.github.io/Web-juegos/>
+**Juega ahora:** <https://albertoortiz.is-a.dev/Web-juegos/>
 
 ### Características
 
@@ -209,7 +209,7 @@ La licencia MIT obliga a conservar el aviso de copyright y el texto de permiso e
 
 ### Demo
 
-**Play now:** <https://alberto2005-coder.github.io/Web-juegos/>
+**Play now:** <https://albertoortiz.is-a.dev/Web-juegos/>
 
 ### Features
 
